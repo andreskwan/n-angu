@@ -1,6 +1,11 @@
 (function() {
   var app = angular.module('gemStore', []);
 
+  app.config(function($interpolateProvider) {
+    $interpolateProvider.startSymbol('%%');
+    $interpolateProvider.endSymbol('%%');
+  });
+
   app.controller('StoreController', function() {
     this.products = gems;
   });
