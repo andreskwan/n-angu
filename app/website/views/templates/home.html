@@ -1,9 +1,31 @@
 <!DOCTYPE html>
-<html ng-app="gemStore">
+<html ng-app="gemStore" class="ng-scope">
   <head>
-    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
-    <script type="text/javascript" src="angular.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+    <style type="text/css">
+      @charset "UTF-8";
+      [ng\:cloak],
+      [ng-cloak],
+      [data-ng-cloak],
+      [x-ng-cloak],
+      .ng-cloak,
+      .x-ng-cloak,
+      .ng-hide
+      {
+        display:none !important;
+      }
+      ng\:form
+      {
+        display:block;
+      }
+      .ng-animate-block-transitions
+      {
+        transition:0s all!important;
+        -webkit-transition:0s all!important;
+      }
+    </style>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/js/angular.min.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
   </head>
 
   <body ng-controller="StoreController as store">
@@ -17,7 +39,7 @@
     <div class="list-group">
       <!--  Product Container  -->
       <div class="list-group-item" ng-repeat="product in store.products">
-        <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
+        <h3>{{product.name}} <em class="pull-right">{{product.price }}</em></h3>
 
         <!-- Image Gallery  -->
         <div ng-controller="GalleryController as gallery"  ng-show="product.images.length">
@@ -46,9 +68,8 @@
           </ul>
 
           <!--  Description Tab's Content  -->
-          <div ng-show="tab.isSet(1)">
-            <h4>Description</h4>
-            <blockquote>{{product.description}}</blockquote>
+          <div >
+            <product-description ng-show="tab.isSet(1)"></product-description>
           </div>
 
           <!--  Spec Tab's Content  -->
@@ -112,7 +133,6 @@
               </fieldset>
             </form>
           </div>
-
         </section>
       </div>
 

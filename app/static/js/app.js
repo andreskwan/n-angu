@@ -32,9 +32,18 @@
     this.addReview = function(product){
       product.reviews.push(this.review);
       this.review = {};
-    };
+    };	
 
 });
+
+  app.directive("productDescription", function(){
+    return {
+      restrict: 'E',
+      // templateUrl: '/website/views/templates/product-description.html'
+      template: '<h4>Description</h4> <blockquote>{{product.description}}</blockquote>'
+    };
+  });
+
 
 var gems = [{
   name: 'Azurite',
