@@ -10,17 +10,6 @@
     this.products = gems;
   });
 
-  app.controller("TabController", function() {
-    this.tab = 1;
-
-    this.isSet = function(checkTab) {
-      return this.tab === checkTab;
-    };
-
-    this.setTab = function(setTab) {
-      this.tab = setTab;
-    };
-  });
 
   app.controller('GalleryController', function(){
     this.current = 0;
@@ -30,25 +19,55 @@
     };
   });
 
+  
   app.controller("ReviewController", function(){
-
     this.review = {};
-
     this.addReview = function(product){
       product.reviews.push(this.review);
       this.review = {};
-    };	
+    };  
+  });
 
-});
+  app.directive("productTabs", function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/product-tabs.html',
+      controller: function(){
+          this.tab = 1;
+
+          this.isSet = function(checkTab) {
+            return this.tab === checkTab;
+          };
+
+          this.setTab = function(setTab) {
+            this.tab = setTab;
+          };
+      },
+      controllerAs: 'tab'
+    };
+  });
 
   app.directive("productDescription", function(){
     return {
       restrict: 'E',
-      // templateUrl: '/website/views/templates/product-description.html'
-      template: '<h4>Description</h4> <blockquote>{{product.description}}</blockquote>'
+      templateUrl: 'partials/product-description.html'
+      // template: '<h4>Description</h4> <blockquote>{{product.description}}</blockquote>'
     };
   });
 
+  app.directive("productSpecs", function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/product-specs.html'
+    };
+  });
+
+  app.directive("productReviews", function() {
+    return {
+      restrict: 'E',
+      templateUrl: "partials/product-reviews.html"
+    };
+  });
 
 var gems = [{
   name: 'Azurite',
@@ -71,9 +90,8 @@ var gems = [{
     stars: 1,
     body: "This gem sucks.",
     author: "tim@example.org"
-  }]
-}, {
-  name: 'Bloodstone',
+  }]}, 
+  { name: 'Bloodstone',
   description: "Origin of the Bloodstone is unknown, hence its low value. It has a very high shine and 12 sides, however.",
   shine: 9,
   price: 22.90,
@@ -119,8 +137,8 @@ var gems = [{
       stars: 1,
       body: "Don't waste your rubles!",
       author: "nat@example.org"
-    }]
-}];
+    }]}
+  ];
 
 })();
 
