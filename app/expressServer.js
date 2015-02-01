@@ -8,7 +8,7 @@ var logger        = require('./lib/logger/logger.js');
 
 //routes
 var router        = require('./website/router.js');
-var RESTapi       = require('./lib/restApi');
+var RESTapi       = require('./lib/restApi/productsAPI.js');
 //creando el objeto
 var ExpressServer = function (config){
 	//si vacio, es un objeto vacio
