@@ -8,7 +8,7 @@ var logger        = require('./lib/logger/logger.js');
 
 //routes
 var router        = require('./website/router.js');
-// var RESTnotas     = require('../lib/notas');
+var RESTapi       = require('./lib/restApi');
 //creando el objeto
 var ExpressServer = function (config){
 	//si vacio, es un objeto vacio
@@ -43,7 +43,7 @@ var ExpressServer = function (config){
 	*	routes
 	*/
 	//Model REST 
-	// this.app.use(RESTnotas);
+	this.app.use(RESTapi);
 
 	//Router and controllers
 	for (var controller in router){
