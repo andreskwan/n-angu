@@ -10,10 +10,10 @@ var logger   = require('../app/lib/logger/logger.js');
 var host     = process.env.API_TEST_HOST || api;
 request      = request(host);
 
-function createNote(){
+function createObject(){
 	var id;
 	var data = {
-		nota:{
+		objeto:{
 			name: 'Azurite',
 			description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
 			shine: 8,
@@ -36,90 +36,89 @@ function createNote(){
 		    author: "tim@example.org"
 		  	}]}
 		 }; 
-	return request.post('/notas')
+	return request.post('/objetos')
 		.set('Accept', 'application/json')
 		.send(data)
 		.expect(201)
-		.then(function getNota (res){
-			this.id = res.body.nota.id;
+		.then(function getobjeto (res){
+			this.id = res.body.objeto.id;
 			// logger.info("BEFORE - res.body",res.body);
 		}.bind(this));
 };
 
-function createNotes(){
+function createObjects(){
 	var id;
 	var data1 = {
-		nota: {
-			"title": "Nota 1",
+		objeto: {
+			"title": "objeto 1",
 			"description": "Introduccion a clase",
-			"type": "js", // tipo de dato de la nota, permitir highlight and warnings 
+			"type": "js", // tipo de dato de la objeto, permitir highlight and warnings 
 			"body": "soy el cuerpo de json"
 		}
 	};
 	var data2 = {
-		nota: {
-			"title": "Nota 2",
+		objeto: {
+			"title": "objeto 2",
 			"description": "Introduccion a clase",
-			"type": "js", // tipo de dato de la nota, permitir highlight and warnings 
+			"type": "js", // tipo de dato de la objeto, permitir highlight and warnings 
 			"body": "soy el cuerpo de json"
 		}
 	};
-	request.post('/notas')
+	request.post('/objetos')
 		.set('Accept', 'application/json')
 		.send(data1)
 		.expect(201)
 		.end();
-	request.post('/notas')
+	request.post('/objetos')
 		.set('Accept', 'application/json')
 		.send(data2)
 		.expect(201)
 		.end();
 };
-//hacer una prueba del recurso notas.js
+//hacer una prueba del resource objetos.js
 //esta funcion describe el contexto de la prueba inicial
-describe('recurso /notas', function (){
+describe('resource /objetos', function (){
 	//La primera prueba sera POST
 	describe('POST', function () {
-		it('should return/create a new note', function (done){
+		it('should return/create a new Object', function (done){
 			// throw new Error('tengo hambre'); 
 			// return true;
-			//crear nota nueva
+			//crear objeto nueva
 			var data = {
-
-		"nota":{
-			name: 'Azurite',
-			description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
-			shine: 8,
-			price: 110.50,
-			rarity: 7,
-		  	color: '#CCC',
-		  	faces: 14,
-		  	images: [
-		    	"images/gem-02.gif",
-		    	"images/gem-05.gif",
-		    	"images/gem-09.gif"
-		  	],
-		    reviews: [{
-		    stars: 5,
-		    body: "I love this gem!",
-		    author: "joe@example.org"
-		    }, {
-		    stars: 1,
-		    body: "This gem sucks.",
-		    author: "tim@example.org"
-		  	}]} 
+					"objeto":{
+						name: 'Azurite',
+						description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
+						shine: 8,
+						price: 110.50,
+						rarity: 7,
+					  	color: '#CCC',
+					  	faces: 14,
+					  	images: [
+					    	"images/gem-02.gif",
+					    	"images/gem-05.gif",
+					    	"images/gem-09.gif"
+					  	],
+					    reviews: [{
+						    stars: 5,
+						    body: "I love this gem!",
+						    author: "joe@example.org"
+					    }, {
+					    	stars: 1,
+					    	body: "This gem sucks.",
+					    	author: "tim@example.org"
+					  	}]} 
 			};
 			//};
 			//usar supertest para hacer request
 			//1 crear solicitud de http/POST enviando data
-			request.post('/notas')
+			request.post('/objetos')
 				//------------------
 				//Post - send - create
 				//------------------
-				//format: usar el encabezado para identificar el recurso 
+				//format: usar el encabezado para identificar el resource 
 				//         accept application/json
 				.set('Accept', 'application/json')
-				//body: nota en json
+				//body: objeto en json
 				.send(data)
 				//------------------
 				//Resp - from node.js server
@@ -131,52 +130,52 @@ describe('recurso /notas', function (){
 				//callback para evaluar el body
 				.end(function (err, res){
 					var body = res.body;
-					//does the note exist?
-					expect(body).to.have.property('nota');
-					nota = body.nota;
-					expect(nota).to.have.property('name', 'Azurite');
-					expect(nota).to.have.property('description', 'Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.');
-					expect(nota).to.have.property('shine', 8);
-					expect(nota).to.have.property('price', 110.50);
-					expect(nota).to.have.property('id');
+					//does the Object exist?
+					expect(body).to.have.property('objeto');
+					objeto = body.objeto;
+					expect(objeto).to.have.property('name', 'Azurite');
+					expect(objeto).to.have.property('description', 'Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.');
+					expect(objeto).to.have.property('shine', 8);
+					expect(objeto).to.have.property('price', 110.50);
+					expect(objeto).to.have.property('id');
 					done();
 				});
 				// .expect('Content-type', /application\/json/)	
 				// .end(function (err, res){
 				// 	var body = res.body;
-				// 	expect(body).to.have.property('nota');
+				// 	expect(body).to.have.property('objeto');
 		});
 	});	
 	describe('GET', function() {
-		beforeEach(createNote);
-		it('deberia obtener una nota existente', function (done) {
+		beforeEach(createObject);
+		it('deberia obtener un objeto existente', function (done) {
 			var id = this.id;
-			return request.get('/notas/'+id)
+			return request.get('/objetos/'+id)
 				.set('Accept', 'application/json')
 				.send()
 				.expect(200)
 				.expect('Content-type', /application\/json/)
 			.then(function assertions (res){
-				var nota = res.body.notas;	
-				expect(res.body).to.have.property('notas');
-				expect(nota).to.have.property('id', id);
-				expect(nota).to.have.property('name', 'Azurite');
-				expect(nota).to.have.property('description', 'Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.');
-				expect(nota).to.have.property('shine', 8);
-				expect(nota).to.have.property('price', 110.50);
+				var objeto = res.body.objetos;	
+				expect(res.body).to.have.property('objetos');
+				expect(objeto).to.have.property('id', id);
+				expect(objeto).to.have.property('name', 'Azurite');
+				expect(objeto).to.have.property('description', 'Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.');
+				expect(objeto).to.have.property('shine', 8);
+				expect(objeto).to.have.property('price', 110.50);
 				done();
 			}, done);
 		});
-		it.skip('deberia obtener una lista de todas las notas', function (done){
-			createNotes();
-			return request.get('/notas/')
+		it.skip('deberia obtener una lista de todas las objetos', function (done){
+			createObjects();
+			return request.get('/objetos/')
 				.send()
 				.expect(201)
 				.expect('Content-type', /application\/json/)
 			.then(function assertions (res){
-				var nota = res.body;	
+				var objeto = res.body;	
 				logger.info("res.body:",res.body);
-				expect(res.body).to.have.property('notas')
+				expect(res.body).to.have.property('objetos')
 					.and.to.be.an('array')
 					.and.to.have.length.above(0);
 				done();
@@ -184,53 +183,53 @@ describe('recurso /notas', function (){
 		});
 	});
 	describe('PUT', function() {
-		beforeEach(createNote);
-		it('deberia actualizar una nota existente', function (done) {
+		beforeEach(createObject);
+		it('deberia actualizar un objeto existente', function (done) {
 			var id = this.id;
-			return request.get('/notas/'+id)
+			return request.get('/objetos/'+id)
 				.set('Accept', 'application/json')
 				.send()
 				.expect(200)
 				.expect('Content-type', /application\/json/)
-			//editar nota
-			.then(function putNota (res){
-				// logger.info('in putNota');
-				//get returns notas
+			//editar objeto
+			.then(function putobjeto (res){
+				// logger.info('in putobjeto');
+				//get returns objetos
 				// logger.info('res.body: ',res.body);
-				// logger.info('res.body.notas: ',res.body.notas);
-				var notaActualizada = res.body.notas;
-				// logger.info("Nota original: ", notaActualizada);
-				notaActualizada.title = "Nota actualizada Kwan";
-				return request.put('/notas/'+id)
-					.send({nota:notaActualizada})
+				// logger.info('res.body.objetos: ',res.body.objetos);
+				var objetoActualizada = res.body.objetos;
+				// logger.info("objeto original: ", objetoActualizada);
+				objetoActualizada.title = "objeto actualizada Kwan";
+				return request.put('/objetos/'+id)
+					.send({objeto:objetoActualizada})
 					.expect(200)
 					.expect('Content-type', /application\/json/)
 			}, done)
-			//eveluar que la nota se haya actualizado correctamente
+			//eveluar que la objeto se haya actualizado correctamente
 			.then(function assertions (res){
 				// logger.info("in assertions");
 
-				var notaValidar = res.body.nota;	
+				var objetoValidar = res.body.objeto;	
 				// logger.info('res.body:',res.body);
-				// logger.info('notaValidar',notaValidar);
-				expect(res.body).to.have.property('nota');
-				expect(notaValidar).to.have.property('id', id);
-				expect(nota).to.have.property('name', 'Azurite');
-				expect(nota).to.have.property('description', 'Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.');
-				expect(nota).to.have.property('shine', 8);
-				expect(nota).to.have.property('price', 110.50);
+				// logger.info('objetoValidar',objetoValidar);
+				expect(res.body).to.have.property('objeto');
+				expect(objetoValidar).to.have.property('id', id);
+				expect(objeto).to.have.property('name', 'Azurite');
+				expect(objeto).to.have.property('description', 'Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.');
+				expect(objeto).to.have.property('shine', 8);
+				expect(objeto).to.have.property('price', 110.50);
 				done();
 			}, done) 
 		});
 	});
 	describe('DELETE', function() {
-		beforeEach(createNote);
-		it('deberia borrar una nota existente', function (done){
+		beforeEach(createObject);
+		it('deberia borrar un objeto existente', function (done){
 			var id = this.id;
-			return request.delete('/notas/'+id)
+			return request.delete('/objetos/'+id)
 			.expect(204)
-			.then(function assertNoteDestroyed(res){
-				return request.get('/notas/'+id)
+			.then(function assertObjectDestroyed(res){
+				return request.get('/objetos/'+id)
 				.expect(400);				
 			}, done)
 			.then( function (){

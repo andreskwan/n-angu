@@ -3,7 +3,7 @@ var logger = require('../logger/logger.js');
 
 var db     = {};
 
-app.route('/notas/:id?')
+app.route('/objetos/:id?')
 	.all( function (req, res, next) {
 		// logger.info("req.method: ",req.method);
 		// logger.info("req.path: ",req.path);
@@ -11,37 +11,37 @@ app.route('/notas/:id?')
 		res.set('Content-Type', 'application/json');
 		next();
 	})
-	//POST
+	//POST /objetos + send(data)
 	.post( function (req, res){
-		var notaNueva    = req.body.nota;
-		notaNueva.id     = Date.now();
-		db[notaNueva.id] = notaNueva;
+		var objetoNuevo    = req.body.objeto;
+		objetoNuevo.id     = Date.now();
+		db[objetoNuevo.id] = objetoNuevo;
 		res
 		.status(201)
 		.json({
-			nota: notaNueva
+			objeto: objetoNuevo
 		}); 
 	})
-	//GET
+	//GET /objetos/:id
 	.get( function (req, res, next){
 		var id   = req.params.id;
 		// logger.info("db content: ",db)
-		var nota = db[id];
+		var objeto = db[id];
 		if (!id){
 			return next();
 		}
-		if (!nota) {
+		if (!objeto) {
 			res.status(400);
 			return res.send('Not Found');
 		}
 		res
 		.json({
-			notas:nota
+			objetos:objeto
 		})
 	})
-	//PUT
+	//PUT /objetos/:id send(data)
 	.put( function (req, res, next){
-		//obtengo id from params y la nota modificada
+		//obtengo id from params y la objeto modificada
 		// logger.info("PUT - server")
 		// logger.info("PUT - req.params: ",req.params);
 		var id              = req.params.id;
@@ -56,20 +56,20 @@ app.route('/notas/:id?')
 		// //without modification
 		// logger.info("PUT - db[id] ",db[id]);
 
-		var notaActualizada = req;
+		var objetoActualizada = req;
 		// logger.info("req: ", req);
 		// logger.info("PUT - req.params: ",req.body);
 
-		//remplazar la nota, con la nueva info
-		//req.body.nota
-		db[id]              = req.body.nota;
+		//remplazar la objeto, con la Nuevo info
+		//req.body.objeto
+		db[id]              = req.body.objeto;
 		// logger.info("PUT - db[id] ",db[id]);
 		//respondo
-		var nota = db[id];
+		var objeto = db[id];
 		res
 		.status(200)
 		.json({
-			nota : db[id]
+			objeto : db[id]
 		});
 	})
 	.delete( function (req, res){
