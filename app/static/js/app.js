@@ -11,6 +11,14 @@
 
   }]);
   
+  app.directive("pageNavigation", function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/navbar.html'
+    };
+  });
+
+
   var gems = [];
 
 })();

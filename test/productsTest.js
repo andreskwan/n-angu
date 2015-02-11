@@ -192,8 +192,8 @@ describe('resource /objetos', function (){
 				.expect(200)
 				.expect('Content-type', /application\/json/)
 			//editar objeto
-			.then(function putobjeto (res){
-				// logger.info('in putobjeto');
+			.then(function putObjeto (res){
+				// logger.info('in putObjeto');
 				//get returns objetos
 				// logger.info('res.body: ',res.body);
 				// logger.info('res.body.objetos: ',res.body.objetos);
