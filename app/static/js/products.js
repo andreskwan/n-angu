@@ -1,14 +1,6 @@
 (function(){
 	var app = angular.module('store-products', []);
   
-  app.controller("ReviewController", function(){
-    this.review = {};
-    this.addReview = function(product){
-      product.reviews.push(this.review);
-      this.review = {};
-    };  
-  });
-
   app.directive("productGallery", function() {
     return {
       restrict: 'E',
@@ -43,6 +35,21 @@
     };
   });
 
+  app.directive("productReviews", function() {
+    return {
+      restrict: 'E',
+      templateUrl: "partials/product-reviews.html",
+      controller: function(){
+                    this.review = {};
+                    this.addReview = function(product) {
+                      product.reviews.push(this.review);
+                      this.review = {};
+                    }
+                  },
+      controllerAs: 'reviewCtrl'
+    };
+  });
+
   app.directive("productDescription", function(){
     return {
       restrict: 'E',
@@ -58,10 +65,4 @@
     };
   });
 
-  app.directive("productReviews", function() {
-    return {
-      restrict: 'E',
-      templateUrl: "partials/product-reviews.html"
-    };
-  });
 })();
