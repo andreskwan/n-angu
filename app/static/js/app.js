@@ -8,11 +8,11 @@
   });
 
 //why this module depends on $http
-  app.controller('StoreController', ['$http', 
+  app.controller('StoreController',  
     //why this function needs the $http service? 
-    function($http) {
-        this.products = gems;
-    }]);
+    function($scope) {
+        $scope.products = gems;
+    });
   
   app.directive("pageNavigation", function(){
     return {
