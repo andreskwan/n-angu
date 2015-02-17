@@ -1,4 +1,5 @@
 (function() {
+    //'gemStore' module depends on 'store-products' module 
   var app = angular.module('gemStore', ['store-products']);
 
   app.config(function($interpolateProvider) {
@@ -6,9 +7,12 @@
     $interpolateProvider.endSymbol('%%');
   });
 
-  app.controller('StoreController', ['$http', function($http) {
-    this.products = gems;
-  }]);
+//why this module depends on $http
+  app.controller('StoreController', ['$http', 
+    //why this function needs the $http service? 
+    function($http) {
+        this.products = gems;
+    }]);
   
   app.directive("pageNavigation", function(){
     return {
@@ -17,6 +21,7 @@
     };
   });
 
+// this data should be related to the products no to the main app
   var gems = [
     {
         "name": "Azurite",
