@@ -2,6 +2,9 @@ body{
   max-width: 500px;
   margin: 0 auto;
 }
+header{
+  margin-top: 80px;
+}
 
 a {
   color: #ac005f;

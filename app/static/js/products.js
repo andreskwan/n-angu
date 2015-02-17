@@ -1,14 +1,25 @@
 (function(){
 	var app = angular.module('store-products', []);
-  
-  app.controller("ReviewController", function(){
-    this.review = {};
-    this.addReview = function(product){
-      product.reviews.push(this.review);
-      this.review = {};
-    };  
-  });
-
+  //template for directive 
+  // app.directive('Products',function(){
+  //   // Runs during compile
+  //   return {
+  //     // name: '',
+  //     // priority: 1,
+  //     // terminal: true,
+  //     // scope: {}, // {} = isolate, true = child, false/undefined = no change
+  //     // controller: function($scope, $element, $attrs, $transclude) {},
+  //     // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+  //     restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+  //     // template: '',
+  //     templateUrl: 'partials/products.html',
+  //     // replace: true,
+  //     // transclude: true,
+  //     // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+  //     // link: function($scope, iElm, iAttrs, controller) {
+  //     // }
+  //   };
+  // });
   app.directive("productGallery", function() {
     return {
       restrict: 'E',
@@ -20,7 +31,7 @@
             this.current = imageNumber || 0;
           };
       },
-      controllerAs: 'gallery'
+      controllerAs: 'galleryCtrl'
     };
   });
 
@@ -39,7 +50,7 @@
             this.tab = setTab;
           };
       },
-      controllerAs: 'tab'
+      controllerAs: 'tabCtrl'
     };
   });
 
@@ -61,7 +72,15 @@
   app.directive("productReviews", function() {
     return {
       restrict: 'E',
-      templateUrl: "partials/product-reviews.html"
+      templateUrl: "partials/product-reviews.html",
+      controller: function(){
+                    this.review = {};
+                    this.addReview = function(product){
+                      product.reviews.push(this.review);
+                      this.review = {};
+                    }
+                  },
+      controllerAs: 'reviewCtrl'
     };
   });
 })();

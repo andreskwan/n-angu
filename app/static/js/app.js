@@ -8,7 +8,6 @@
 
   app.controller('StoreController', ['$http', function($http) {
     this.products = gems;
-
   }]);
   
   app.directive("pageNavigation", function(){
@@ -17,7 +16,6 @@
       templateUrl: 'partials/navbar.html'
     };
   });
-
 
   var gems = [
     {
