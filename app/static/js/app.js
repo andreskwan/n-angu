@@ -1,35 +1,32 @@
 (function() {
     //'gemStore' module depends on 'store-products' module 
-  var app = angular.module('gemStore', ['store-products']);
-
+  var app = angular.module('gemStore',['ngRoute',
+                                       'storeProducts']); 
+                                      
   app.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('%%');
     $interpolateProvider.endSymbol('%%');
   });
 
-//why this module depends on $http
-  app.controller('StoreController', ['$http', '$scope',
-    //why this function needs the $http service? 
-    function($http, $scope) {
-        var store = this;
-        $http.get('js/products.json')
-            .success(function(data){
-                // this callback will be called asynchronously
-                // when the response is available    
-                $scope.products  = data; 
-                $scope.gemsOrder = 'name';
-            })
-            .error(
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-            );
-    }]);
-  
+  //how to use this with directives?
+  app.config(['$routeProvider',function($routeProvider) {
+    $routeProvider.
+      when('/products',
+      {
+        templateUrl: 'partials/products.html',
+        controller: 'StoreController'
+      }).
+      otherwise({
+        redirectTo:'/products'
+      })
+  }]);
+
   app.directive("pageNavigation", function(){
     return {
       restrict: 'E',
       templateUrl: 'partials/navbar.html'
     };
   });
+
 })();
 

@@ -10,7 +10,7 @@
     <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
   </head>
 
-  <body ng-controller="StoreController as storeCtrl">
+  <body>
     <!--  Store Header  -->
     <page-Navigation></page-Navigation>
     <header>
@@ -18,35 +18,7 @@
       <h2 class="text-center">– an Angular store –</h2>
     </header>
 
-    <!-- <products></products> -->
-    <div class="search">
-      <h1>Gems Directory</h1>
-      <label>Search:</label>
-      <input class="gems" ng-model="gemsQuery" placeholder="Search for gems" autofocus></input>
-      <label > By: 
-        <select ng-model="gemsOrder">
-          <option value="name">Name</option>
-          <option value="price">Price</option>
-        </select>
-      </label>
-      <label> Ascending
-        <input type="radio" ng-model="direction" name="direction" checked>
-      </label>
-      <label> Descending
-        <input type="radio" ng-model="direction" name="direction" value="reverse">
-      </label>
-    </div>
-    <!--  Products Container  -->
-    <div class="list-group">
-      <!--  Product Container  -->
-      <div class="list-group-item" ng-repeat="product in products | filter: gemsQuery | orderBy:gemsOrder:direction">
-        <h3>%% product.name %% <em class="pull-right">%% product.price | currency %%</em></h3>
-        <!-- Image Gallery  -->
-        <product-gallery></product-gallery>
-        <!-- Product Tabs  -->
-        <product-tabs></product-tabs>
-      </div>
-    </div>
+    <div class="main" ng-view=""></div>
 
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>

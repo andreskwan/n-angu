@@ -1,5 +1,25 @@
 (function(){
-	var app = angular.module('store-products', []);
+	var app = angular.module('storeProducts', []);
+
+
+  //why this module depends on $http
+  app.controller('StoreController', ['$http', '$scope',
+    //why this function needs the $http service? 
+    function($http, $scope) {
+        var store = this;
+        $http.get('js/products.json')
+            .success(function(data){
+                // this callback will be called asynchronously
+                // when the response is available    
+                $scope.products  = data; 
+                $scope.gemsOrder = 'name';
+            })
+            .error(
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            );
+    }]);
+
   //template for directive 
   // app.directive('Products',function(){
   //   // Runs during compile
@@ -31,7 +51,7 @@
             this.current = imageNumber || 0;
           };
       },
-      controllerAs: 'galleryCtrl'
+      controllerAs: 'GalleryController'
     };
   });
 
@@ -50,7 +70,7 @@
             this.tab = setTab;
           };
       },
-      controllerAs: 'tabCtrl'
+      controllerAs: 'TabController'
     };
   });
 
@@ -80,7 +100,7 @@
                       this.review = {};
                     }
                   },
-      controllerAs: 'reviewCtrl'
+      controllerAs: 'ReviewController'
     };
   });
 })();
