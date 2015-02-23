@@ -40,6 +40,7 @@
   //     // }
   //   };
   // });
+  
   app.directive("productGallery", function() {
     return {
       restrict: 'E',
