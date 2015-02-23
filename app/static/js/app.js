@@ -53,6 +53,11 @@
       templateUrl: 'partials/navbar.html'
     };
   });
-
+  app.directive("pageFooter", function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/footer.html'
+    };
+  });
 })();
 
