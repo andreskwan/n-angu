@@ -3,11 +3,16 @@ var gutil       = require('gulp-util');
 var nodemon     = require('gulp-nodemon');
 var notify      = require('gulp-notify');
 var browserSync = require("browser-sync");
-
-
+var dest = require('gulp-dest');
+var rename = require('gulp-rename');
 
 gulp.task('js', function() {
-  return gulp.src('builds/development/js/**/*')
+  return gulp.src('app/public/js/**/*')
+  .pipe(rename(function (path) {
+        // path.dirname += "/popoGrande";
+        console.log("path: ", path);
+    }))
+  .pipe(gulp.dest('./popo'))
   .pipe(notify({message: 'JS refreshed'}));
 });
 
@@ -22,7 +27,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('watch', function() {
-	gulp.watch('builds/development/js/**/*', ['js']);
+	gulp.watch('app/public/js/**/*', ['js']);
 	gulp.watch('builds/development/css/*.css', ['css']);
 	gulp.watch(['builds/development/*.html','builds/development/views/*.html'], ['html']);
 });
