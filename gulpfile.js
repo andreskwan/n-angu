@@ -10,7 +10,7 @@ gulp.task('js', function() {
   return gulp.src('builds/development/js/**/*')
   .pipe(rename(function (path) {
         path.dirname += "/app/public/js";
-        console.log("path: ", path);
+        // console.log("path: ", path);
     }))
   .pipe(gulp.dest('./'))
   .pipe(notify({message: 'JS refreshed'}));
@@ -20,7 +20,7 @@ gulp.task('html', function() {
   return gulp.src('builds/development/views/*.html')
   .pipe(rename(function (path) {
         path.dirname += "/app/public/partials";
-        console.log("path: ", path);
+        // console.log("path: ", path);
     }))
   .pipe(gulp.dest('./'))
   // .pipe(browserSync.reload())
@@ -76,7 +76,7 @@ gulp.task('nodemon', function(cb) {
 
 // Make sure `nodemon` is started before running `browser-sync`.
 gulp.task('browser-sync', ['js', 'nodemon'], function() {
-  var port = process.env.PORT || 3000;//port when app is running
+  var port = process.env.PORT || 6000;//port when app is running
   browserSync.init({
 
     // All of the following files will be watched
