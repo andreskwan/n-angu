@@ -7,17 +7,23 @@ var dest = require('gulp-dest');
 var rename = require('gulp-rename');
 
 gulp.task('js', function() {
-  return gulp.src('app/public/js/**/*')
+  return gulp.src('builds/development/js/**/*')
   .pipe(rename(function (path) {
-        // path.dirname += "/popoGrande";
+        path.dirname += "/app/public/js";
         console.log("path: ", path);
     }))
-  .pipe(gulp.dest('./popo'))
+  .pipe(gulp.dest('./'))
   .pipe(notify({message: 'JS refreshed'}));
 });
 
 gulp.task('html', function() {
-  return gulp.src('builds/development/*.html')
+  return gulp.src('builds/development/views/*.html')
+  .pipe(rename(function (path) {
+        path.dirname += "/app/public/partials";
+        console.log("path: ", path);
+    }))
+  .pipe(gulp.dest('./'))
+  // .pipe(browserSync.reload())
   .pipe(notify({message: 'Views refreshed'}));
 });
 
@@ -27,9 +33,9 @@ gulp.task('css', function() {
 });
 
 gulp.task('watch', function() {
-	gulp.watch('app/public/js/**/*', ['js']);
+	gulp.watch('builds/development/js/**/*', ['js']);
 	gulp.watch('builds/development/css/*.css', ['css']);
-	gulp.watch(['builds/development/*.html','builds/development/views/*.html'], ['html']);
+	gulp.watch(['builds/development/views/*.html'], ['html']);
 });
 
 gulp.task('nodemon', function(cb) {
@@ -39,7 +45,7 @@ gulp.task('nodemon', function(cb) {
   var called = false;
   return nodemon({
     script: 'server.js',
-    watch: ['server.js']
+    watch: ['server.js','builds/development/views/*.html']
   })
   .on('start', function onStart() {
     if (!called) {
@@ -47,8 +53,18 @@ gulp.task('nodemon', function(cb) {
     }
     called = true;
   })
+  // .on('change', ['defaul'])
+  .on('change', function onChange() {
+    console.log("--------On Change")
+    // Also reload the browsers after a slight delay
+    setTimeout(function reload() {
+      browserSync.reload({
+        stream: false
+      });
+    }, 500);
+  })
   .on('restart', function onRestart() {
-
+    console.log("--------On Restart")
     // Also reload the browsers after a slight delay
     setTimeout(function reload() {
       browserSync.reload({
@@ -83,6 +99,7 @@ gulp.task('default', ['browser-sync'], function () {
     // add browserSync.reload to the tasks array to make
     // all browsers reload after tasks are complete.
     gulp.watch("js/*.js", ['js', browserSync.reload]);
+    gulp.watch("builds/development/views/*.html", ['html', browserSync.reload]);
 });
 
 gulp.task('default', ['watch', 'html', 'js', 'css', 'nodemon','browser-sync']);
