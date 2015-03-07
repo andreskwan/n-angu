@@ -1,11 +1,22 @@
+//3/7/15
+//- running mongodb from gulp
+
+//old
+var browserSync = require("browser-sync");
+var dest        = require('gulp-dest');
 var gulp        = require('gulp');
 var gutil       = require('gulp-util');
 var nodemon     = require('gulp-nodemon');
 var notify      = require('gulp-notify');
-var browserSync = require("browser-sync");
-var dest = require('gulp-dest');
-var rename = require('gulp-rename');
+var rename      = require('gulp-rename');
+var shell       = require('gulp-shell');
 
+//3/7/15
+gulp.task('mongodb', function(){
+  return gulp.src('')
+  .pipe(shell(['mongod --dbpath=data --config /usr/local/etc/mongod.conf']));
+});
+//old
 gulp.task('js', function() {
   return gulp.src('builds/development/js/**/*')
   .pipe(rename(function (path) {
@@ -55,7 +66,7 @@ gulp.task('nodemon', function(cb) {
   })
   // .on('change', ['defaul'])
   .on('change', function onChange() {
-    console.log("--------On Change")
+    console.log("--------On Change");
     // Also reload the browsers after a slight delay
     setTimeout(function reload() {
       browserSync.reload({
@@ -64,7 +75,7 @@ gulp.task('nodemon', function(cb) {
     }, 500);
   })
   .on('restart', function onRestart() {
-    console.log("--------On Restart")
+    console.log("--------On Restart");
     // Also reload the browsers after a slight delay
     setTimeout(function reload() {
       browserSync.reload({
@@ -95,11 +106,10 @@ gulp.task('browser-sync', ['js', 'nodemon'], function() {
 
 // use default task to launch BrowserSync and watch JS files
 gulp.task('default', ['browser-sync'], function () {
-
     // add browserSync.reload to the tasks array to make
     // all browsers reload after tasks are complete.
     gulp.watch("js/*.js", ['js', browserSync.reload]);
     gulp.watch("builds/development/views/*.html", ['html', browserSync.reload]);
 });
 
-gulp.task('default', ['watch', 'html', 'js', 'css', 'nodemon','browser-sync']);
+gulp.task('default', ['mongodb','watch', 'html', 'js', 'css', 'nodemon','browser-sync']);
