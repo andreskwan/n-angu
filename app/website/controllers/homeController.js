@@ -11,8 +11,8 @@ var Home = function (conf){
 		this[conf.funcionalidad] (conf.req, conf.res, conf.next);
 		//funcionalidad invocada desde el browser
 		// logger.info("conf.funcionalidad   : ",conf.funcionalidad);
-	}
-}
+	};
+};
 
 Home.prototype.get_home = function (req, res, next){
 	//aqui creo que deberia ser POST
@@ -20,6 +20,6 @@ Home.prototype.get_home = function (req, res, next){
 	// debugger;
 	var object = {nombre:"get_add"};
 	this.view.add(res, object);
-}
+};
 
 module.exports = Home;

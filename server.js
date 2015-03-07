@@ -8,10 +8,17 @@ var ExpressServer = require('./app/expressServer.js')
 // var socketIO      = require('./app/socketIO.js');
 var conf          = require('./conf.json'); 
 
+//normalizePort();
 var port    = process.env.PORT || conf.port;
 var express = new ExpressServer();
+//create a web server
+//express.app is the request listener 
+//- to handle request and responses
+//- added to the 'request' event.
+//returns an instance of http.Server
 var server  = http.createServer(express.app);
 
+//parent module here is for testing
 if (!module.parent) {
 	server.listen(port, function (){
 		logger.info('http://localhost:'+port);

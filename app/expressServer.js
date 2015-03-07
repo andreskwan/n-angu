@@ -1,6 +1,6 @@
 //dev enviroment
 var env           = process.env.NODE_ENV || 'production';
-var express       = require('express'); 
+var express       = require('express');
 var middlewares   = require('./middlewares/admin.js');
 // var cons       = require('consolidate');
 var swig          = require('swig');
@@ -28,26 +28,38 @@ var ExpressServer = function (config){
 	//como template de vista use html y asi asocia a swig
 	this.app.set('view engine', 'html');
 	//donde estan los html?
+	//path module could be used here
+
+	//var path = require('path');
+	//this.app.set('views', path.join(__dirname,'views'));
+	//AngularJS - should be angular views
 	this.app.set('views', __dirname + '/website/views/templates');
 	/**
 	*	Dev enviroment configuration
 	*/
 	if (env == 'development'){
-		
 		this.app.set('view cache', false);
 		// swig.setDefaults({cache: false, varControls:['[[',']]']});
 		swig.setDefaults({cache: false});
+		//lynda MEAN - 1.5 configuring middleware
+		app.use(function (err, req, res, next){
+			res.status(err.status || 500);
+			res.render('error', {
+				message: err.message,
+				error: err
+			});
+		});
 	}
 	// logger.info('Environment :', env.toUpperCase());
 	/**
 	*	routes
 	*/
-	//Model REST 
+	//Model REST
 	this.app.use(RESTapi);
 
 	//Router and controllers
 	for (var controller in router){
-		//identificar los prototipos 
+		//identificar los prototipos
 		// logger.info("controller   : ",controller);
 		// logger.info("router["+controller+"].prototype",router[controller].prototype);
 		for (var funcionalidad in router[controller].prototype){
@@ -61,20 +73,23 @@ var ExpressServer = function (config){
 			// var url = (controller == 'home')? '/':'/' + controller + '/' + entorno + '/' + data;
 			var url = (controller == 'home')? '/':'/' + entorno + '/' + data;
 			// debugger;
-			logger.info("controller: "+controller+', func: '+funcionalidad+', '+'method: '+method+', '+'url: '+url);
+			logger.info("controller: "+controller+
+						'func: '+funcionalidad+', '+
+						'method: '+method+', '+
+						'url: '+url);
 			this.router(controller, funcionalidad, method, url);
 		}
-	} 
+	}
 	// this.app.use(function (req,res) {
  //    res.render('404', {url:req.url});
 // });
-}; 
+};
 
 ExpressServer.prototype.router = function (controller, funcionalidad, method, url){
 	// logger.info(controller+"-router app.method   : ",method);
 	this.app[method](url, function (req, res, next){
 		var conf = {
-			//funcionalidad 
+			//funcionalidad
 			'funcionalidad': funcionalidad,
 			'req'          : req,
 			'res'          : res,
@@ -86,6 +101,6 @@ ExpressServer.prototype.router = function (controller, funcionalidad, method, ur
 		// debugger;
 		Controller.response();
 	});
-}
+};
 
 module.exports = ExpressServer;
