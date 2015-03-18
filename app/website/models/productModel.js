@@ -7,7 +7,7 @@ var Product = function (conf){
 	this.model = productModel;
 };
 
-Product.prototype.save = function (data, callback){
+Product.prototype.post = function (data, callback){
 	// logger.info("MODEL - SAVE - Product.prototype.save");
 	// logger.info("MODEL - SAVE - data:", data);
 	// A.findOneAndUpdate(conditions, update, options)
@@ -43,6 +43,24 @@ Product.prototype.get = function (query, callback){
 		//callback al controlador
 		if (err) logger.info("REST - GET - error",err);
 		callback(doc);
+	});
+};
+Product.prototype.getAll = function (callback){
+	// logger.info("MODEL - GET - query: ",query);
+	//aqui deberia cambiar este objeto y solo dejar el query
+	//de esta manera es mas plural, puedo buscar por otros criterios
+	// logger.info("MODEL - GET - data:", query);
+	this.model.find()
+	.exec(function (err, docs){
+		// logger.info("MODEL - GET - doc: ",doc);
+		//callback al controlador
+		if (err) logger.info("REST - GET - error",err);
+		// docs.map(function (doc){return doc.toObject();});
+		for(var i = 0; i < docs.length; i++){
+			docs[i] = docs[i].toJSON();
+		}
+		// debugger;
+		callback(docs);
 	});
 };
 Product.prototype.put = function (data, callback){

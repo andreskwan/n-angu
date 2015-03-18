@@ -1,19 +1,18 @@
 (function() {
-    //'gemStore' module depends on 'store-products' module 
-  var app = angular.module('gemStore',['ngRoute',
-                                       'storeProducts']); 
-                                      
-  app.config(function($interpolateProvider) {
+    //'gemStore' module depends on 'store-products' module
+  angular.module('gemStore',['ngRoute','storeProducts'])
+
+  .config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('%%');
     $interpolateProvider.endSymbol('%%');
-  });
-  app.directive("pageNavigation", function(){
+  })
+  .directive("pageNavigation", function(){
     return {
       restrict: 'E',
       templateUrl: 'partials/navbar.html'
     };
-  });
-  app.directive("pageFooter", function(){
+  })
+  .directive("pageFooter", function(){
     return {
       restrict: 'E',
       templateUrl: 'partials/footer.html'
@@ -21,7 +20,7 @@
   });
 })();
 
-  // //template for directive 
+  // //template for directive
   // app.directive('Products',function(){
   //   // Runs during compile
   //   return {

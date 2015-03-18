@@ -11,6 +11,7 @@ var host     = process.env.API_TEST_HOST || api;
 request      = request(host);
 
 function createProduct(){
+	logger.info("TEST - BeforeEach");
 	var id;
 	var data = {
 		producto:{
@@ -30,7 +31,7 @@ function createProduct(){
 					stars : '5',
 					body  : "I love this gem!",
 					author: "joe@example.org"
-			    }, 
+			    },
 			    {
 					stars : '1',
 					body  : "This gem sucks.",
@@ -169,7 +170,7 @@ describe('resource /productos', function (){
 		beforeEach(createProduct);
 		it('deberia obtener un producto existente', function (done) {
 			var id = this.id;
-			// logger.info("TEST - GET - this.id: ",id);	
+			// logger.info("TEST - GET - this.id: ",id);
 			return request.get('/productos/'+id)
 				.set('Accept', 'application/json')
 				.send()
@@ -188,18 +189,21 @@ describe('resource /productos', function (){
 				done();
 			}, done);
 		});
-		it.skip('deberia obtener una lista de todas las productos', function (done){
-			createProducts();
+		it('deberia obtener una lista de todas las productos', function (done){
+			// createProducts();
 			return request.get('/productos/')
 				.send()
-				.expect(201)
+				.expect(200)
 				.expect('Content-type', /application\/json/)
 			.then(function assertions (res){
 				var producto = res.body;
-				logger.info("res.body:",res.body);
+				// logger.info("TEST - GET-ALL - res.body",res.body);
+				// logger.info("TEST - GET-ALL - producto['productos'][0]",producto['productos'][0]);
 				expect(res.body).to.have.property('productos')
 					.and.to.be.an('array')
 					.and.to.have.length.above(0);
+					var producto1 = producto[0];
+					// logger.info("TEST - GET-ALL - producto1",producto[0]);
 				done();
 			}, done);
 		});
@@ -255,4 +259,3 @@ describe('resource /productos', function (){
 		});
 	});
 });
-

@@ -1,7 +1,7 @@
 (function() {
     //this module depends on
     // 'store-products' module 
-    // ngRoute
+    // 'ngRoute'
   angular.module('gemStore')
   //how to use this with directives?
   .config(['$routeProvider',function($routeProvider) {

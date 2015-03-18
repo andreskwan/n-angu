@@ -16,7 +16,7 @@ app.route('/productos/:id?')
 		var productoDB       = new ProductModel();
 		// logger.info("req.body.producto:",req.body.producto);
 		var productoNuevo    = req.body.producto;
-		productoDB.save(productoNuevo, function(doc){
+		productoDB.post(productoNuevo, function(doc){
 			// debugger;
 			// logger.info("doc.toJSON",doc.toJSON());
 			res
@@ -31,19 +31,21 @@ app.route('/productos/:id?')
 	//GET
 	.get( function (req, res, next){
 		var id   = req.params.id;
-		// logger.info("REST - GET - id: ",id);
-		// var producto = db[id];
-		// if (!id){
-		// 	return next();
-		// }
-		// if (!producto) {
-		// 	res.status(400);
-		// 	return res.send('Not Found');
-		// }
 		var productoDB = new ProductModel();
+		// debugger;
+		if (!id){
+			return next();
+		}
+		logger.info("REST - GET - id: ",id);
 		productoDB.get(id, function(doc){
 			// logger.info("REST - GET - doc:",doc);
+			if (!doc) {
+				res
+				.status(400);
+				return res.send('Not Found');
+			}
 			res
+			.status(200)
 			.json({
 				productos:doc
 			});
@@ -119,6 +121,17 @@ app.route('/productos/:id?')
 			res
 			.status(204)
 			.send();
+		});
+	});
+	app.get('/productos/', function (req, res){
+		var productoDB = new ProductModel();
+		productoDB.getAll(function(docs){
+		// logger.info("REST - GET-ALL doc:",docs);
+			res
+			.json({
+				productos:docs
+			});
+			// debugger;
 		});
 	});
 
