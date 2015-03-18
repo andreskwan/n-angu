@@ -112,4 +112,4 @@ gulp.task('default', ['browser-sync'], function () {
     gulp.watch("builds/development/views/*.html", ['html', browserSync.reload]);
 });
 
-gulp.task('default', ['mongodb','watch', 'html', 'js', 'css', 'nodemon','browser-sync']);
+gulp.task('default', ['watch', 'html', 'js', 'css', 'nodemon','browser-sync']);

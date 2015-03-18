@@ -8,7 +8,7 @@ var logger        = require('./lib/logger/logger.js');
 
 //routes
 var router        = require('./website/router.js');
-var RESTapi       = require('./lib/restApi/productsAPI.js');
+var RESTapi       = require('./website/controllers/productsController.js');
 //creando el objeto
 var ExpressServer = function (config){
 	//si vacio, es un objeto vacio
@@ -42,7 +42,7 @@ var ExpressServer = function (config){
 		// swig.setDefaults({cache: false, varControls:['[[',']]']});
 		swig.setDefaults({cache: false});
 		//lynda MEAN - 1.5 configuring middleware
-		app.use(function (err, req, res, next){
+		this.app.use(function (err, req, res, next){
 			res.status(err.status || 500);
 			res.render('error', {
 				message: err.message,

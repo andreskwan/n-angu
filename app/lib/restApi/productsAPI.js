@@ -1,7 +1,18 @@
-var app    = require('express')();
-var logger = require('../logger/logger.js');
+// var objDB = {};
+var app      = require('express')();
+var logger   = require('../logger/logger.js');
+var objDB    = require('../../website/models/productsModel.js');
 
-var db     = {};
+app.get('/objetos', function (req, res){
+	objDB.find({}, function(err, objetos){
+	   res
+		.status(200)
+		.set('Content-Type', 'application/json')
+		.json({
+		 	objetos: objetos
+		});
+	});
+});
 
 app.route('/objetos/:id?')
 	.all( function (req, res, next) {
@@ -12,21 +23,23 @@ app.route('/objetos/:id?')
 		next();
 	})
 	//POST /objetos + send(data)
-	.post( function (req, res){
+	.post(function (req, res){
 		var objetoNuevo    = req.body.objeto;
-		objetoNuevo.id     = Date.now();
-		db[objetoNuevo.id] = objetoNuevo;
-		res
-		.status(201)
-		.json({
-			objeto: objetoNuevo
-		}); 
+		// objetoNuevo.id     = Date.now();
+		// objDB[objetoNuevo.id] = objetoNuevo;
+		objDB.create(objetoNuevo, function (err, objeto){
+			res
+			.status(201)
+			.json({
+				objeto: objetoNuevo
+			});
+		});
 	})
 	//GET /objetos/:id
 	.get( function (req, res, next){
 		var id   = req.params.id;
-		// logger.info("db content: ",db)
-		var objeto = db[id];
+		// logger.info("objDB content: ",objDB)
+		var objeto = objDB[id];
 		if (!id){
 			return next();
 		}
@@ -37,7 +50,7 @@ app.route('/objetos/:id?')
 		res
 		.json({
 			objetos:objeto
-		})
+		});
 	})
 	//PUT /objetos/:id send(data)
 	.put( function (req, res, next){
@@ -54,7 +67,7 @@ app.route('/objetos/:id?')
 
 		// logger.info("PUT - id",id);
 		// //without modification
-		// logger.info("PUT - db[id] ",db[id]);
+		// logger.info("PUT - objDB[id] ",objDB[id]);
 
 		var objetoActualizada = req;
 		// logger.info("req: ", req);
@@ -62,26 +75,26 @@ app.route('/objetos/:id?')
 
 		//remplazar la objeto, con la Nuevo info
 		//req.body.objeto
-		db[id]              = req.body.objeto;
-		// logger.info("PUT - db[id] ",db[id]);
+		objDB[id]              = req.body.objeto;
+		// logger.info("PUT - objDB[id] ",objDB[id]);
 		//respondo
-		var objeto = db[id];
+		var objeto = objDB[id];
 		res
 		.status(200)
 		.json({
-			objeto : db[id]
+			objeto : objDB[id]
 		});
 	})
 	.delete( function (req, res){
 		var id = req.params.id;
 		//if null id but what about if there is not an obj
-		//correlated with id in the db?
+		//correlated with id in the objDB?
 		if (!id){
 			return next();
 		}
-		// logger.info("En Delete Antes db content: ",db)
-		delete db[id];
-		// logger.info("En Delete Despues db content: ",db)
+		// logger.info("En Delete Antes objDB content: ",objDB)
+		delete objDB[id];
+		// logger.info("En Delete Despues objDB content: ",objDB)
 		res
 		.status(204)
 		.send();
