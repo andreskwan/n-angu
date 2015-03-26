@@ -1,41 +1,18 @@
 (function() {
-    //'gemStore' module depends on 'store-products' module 
-  var app = angular.module('gemStore',['ngRoute',
-                                       'storeProducts']); 
-                                      
-  app.config(function($interpolateProvider) {
+    //'gemStore' module depends on 'store-products' modules
+  angular.module('gemStore',['ngRoute','productsModule','productModule'])
+
+  .config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('%%');
     $interpolateProvider.endSymbol('%%');
-  });
-
-  //how to use this with directives?
-  app.config(['$routeProvider',function($routeProvider) {
-    $routeProvider.
-      when('/products',
-      {
-        templateUrl: 'partials/products.html',
-        controller: 'StoreController'
-      }).
-      when('/index',
-      {
-        templateUrl: 'partials/index.html',
-      }).
-      when('/unal',
-      {
-        templateUrl: 'partials/unal.html',
-      }).
-      otherwise({
-        redirectTo:'/unal'
-      })
-  }]);
-
-  app.directive("pageNavigation", function(){
+  })
+  .directive("pageNavigation", function(){
     return {
       restrict: 'E',
       templateUrl: 'partials/navbar.html'
     };
-  });
-  app.directive("pageFooter", function(){
+  })
+  .directive("pageFooter", function(){
     return {
       restrict: 'E',
       templateUrl: 'partials/footer.html'
@@ -43,7 +20,7 @@
   });
 })();
 
-  // //template for directive 
+  // //template for directive
   // app.directive('Products',function(){
   //   // Runs during compile
   //   return {

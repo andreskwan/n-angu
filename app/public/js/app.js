@@ -1,6 +1,6 @@
 (function() {
-    //'gemStore' module depends on 'store-products' module
-  angular.module('gemStore',['ngRoute','storeProducts'])
+    //'gemStore' module depends on 'store-products' modules
+  angular.module('gemStore',['ngRoute','productsModule','productModule'])
 
   .config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('%%');

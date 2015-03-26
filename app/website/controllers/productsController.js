@@ -34,6 +34,8 @@ app.route('/productos/:id?')
 		var productoDB = new ProductModel();
 		// debugger;
 		if (!id){
+			//in get all reach this place. 
+			//but next() delivers it
 			return next();
 		}
 		logger.info("REST - GET - id: ",id);

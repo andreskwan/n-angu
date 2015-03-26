@@ -87,7 +87,7 @@ gulp.task('nodemon', function(cb) {
 
 // Make sure `nodemon` is started before running `browser-sync`.
 gulp.task('browser-sync', ['js', 'nodemon'], function() {
-  var port = process.env.PORT || 6000;//port when app is running
+  var port = process.env.PORT || 3000;//port when app is running
   browserSync.init({
 
     // All of the following files will be watched

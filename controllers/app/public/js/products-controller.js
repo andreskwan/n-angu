@@ -1,7 +1,7 @@
 (function(){
-	angular.module('storeProducts', [])
+	angular.module('productsModule', [])
   //why this module depends on $http
-  .controller('StoreController', ['$http', '$scope',
+  .controller('productsController', ['$http', '$scope',
     //why this function needs the $http service?
     function($http, $scope) {
         var store = this;
@@ -17,7 +17,6 @@
                 // or server returns response with an error status.
           );
   }])
-
   //template for directive
   // .directive('Products',function(){
   //   // Runs during compile
@@ -44,7 +43,6 @@
       templateUrl: 'partials/product-gallery.html',
       controller: function(){
           this.current = 0;
-
           this.setCurrent = function(imageNumber){
             this.current = imageNumber || 0;
           };

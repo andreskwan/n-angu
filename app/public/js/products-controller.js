@@ -1,27 +1,25 @@
 (function(){
-	var app = angular.module('storeProducts', []);
-
-
+	angular.module('productsModule', [])
   //why this module depends on $http
-  app.controller('StoreController', ['$http', '$scope',
-    //why this function needs the $http service? 
+  .controller('ProductsController', ['$http', '$scope',
+    //why this function needs the $http service?
     function($http, $scope) {
+        debugger;
         var store = this;
-        $http.get('js/products.json')
-            .success(function(data){
-                // this callback will be called asynchronously
-                // when the response is available    
-                $scope.products  = data; 
-                $scope.gemsOrder = 'name';
-            })
-            .error(
+        $http({method:'GET', url: '/productos'})
+          .success(function (data){
+                    data = data['productos'];
+                    // debugger;
+                    $scope.products  = data;
+                    $scope.gemsOrder = 'name';
+          })
+          .error(
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
-            );
-    }]);
-
-  //template for directive 
-  // app.directive('Products',function(){
+          );
+  }])
+  //template for directive
+  // .directive('Products',function(){
   //   // Runs during compile
   //   return {
   //     // name: '',
@@ -39,24 +37,21 @@
   //     // link: function($scope, iElm, iAttrs, controller) {
   //     // }
   //   };
-  // });
-  
-  app.directive("productGallery", function() {
+  // })
+  .directive("productGallery", function() {
     return {
       restrict: 'E',
       templateUrl: 'partials/product-gallery.html',
       controller: function(){
           this.current = 0;
-
           this.setCurrent = function(imageNumber){
             this.current = imageNumber || 0;
           };
       },
       controllerAs: 'GalleryController'
     };
-  });
-
-  app.directive("productTabs", function() {
+  })
+  .directive("productTabs", function() {
     return {
       restrict: 'E',
       templateUrl: 'partials/product-tabs.html',
@@ -73,24 +68,21 @@
       },
       controllerAs: 'TabController'
     };
-  });
-
-  app.directive("productDescription", function(){
+  })
+  .directive("productDescription", function(){
     return {
       restrict: 'E',
       templateUrl: 'partials/product-description.html'
       // template: '<h4>Description</h4> <blockquote>{{product.description}}</blockquote>'
     };
-  });
-
-  app.directive("productSpecs", function(){
+  })
+  .directive("productSpecs", function(){
     return {
       restrict: 'E',
       templateUrl: 'partials/product-specs.html'
     };
-  });
-
-  app.directive("productReviews", function() {
+  })
+  .directive("productReviews", function() {
     return {
       restrict: 'E',
       templateUrl: "partials/product-reviews.html",
@@ -99,7 +91,7 @@
                     this.addReview = function(product){
                       product.reviews.push(this.review);
                       this.review = {};
-                    }
+                    };
                   },
       controllerAs: 'ReviewController'
     };

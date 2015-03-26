@@ -26,6 +26,7 @@
       <!--  Product Container  -->
       <div class="list-group-item" ng-repeat="product in products | filter: gemsQuery | orderBy:gemsOrder:direction">
         <h3>%% product.name %% <em class="pull-right">%% product.price | currency %%</em></h3>
+        <h3>Product _ID:%% product._id %%</h3>
         <!-- Image Gallery  -->
         <product-gallery></product-gallery>
         <!-- Product Tabs  -->
