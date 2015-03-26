@@ -4,7 +4,7 @@
   .controller('ProductsController', ['$http', '$scope',
     //why this function needs the $http service?
     function($http, $scope) {
-        debugger;
+        // debugger;
         var store = this;
         $http({method:'GET', url: '/productos'})
           .success(function (data){
