@@ -1,0 +1,20 @@
+<div class="container">
+	<!--  Review Form -->
+	<form name="productForm">
+	  <!--  Review Form -->
+	  <h4>Submit a Product</h4>
+	  <fieldset class="form-group">
+	    <input ng-model="product.name" placeholder="Product name" title="Name" />
+	  </fieldset>
+	  <fieldset class="form-group">
+	    <input ng-model="product.price" type="number" placeholder="1100" title="Price" />
+	  </fieldset>
+	  <fieldset class="form-group">
+    	<textarea ng-model="product.description" placeholder="Write a short description..." title="Description"></textarea>
+  	  </fieldset>
+	  <fieldset class="form-group">
+	    <input type="submit" class="btn btn-primary pull-right" value="Submit product" />
+	  </fieldset>
+	  <button  ng-click="ProductCreateController.saveProduct(product)">Save</button>
+	</form>
+</div>

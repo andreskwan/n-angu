@@ -86,11 +86,29 @@
     return {
       restrict: 'E',
       templateUrl: "partials/product-reviews.html",
-      controller: function(){
+      controller: function($http){
                     this.review = {};
                     this.addReview = function(product){
-                      product.reviews.push(this.review);
-                      this.review = {};
+                    debugger;
+                    console.log(product.review)
+                    product = {"producto":product};
+                    console.log(product)
+                    // $http({method:"POST",url:'/productos/', data:product});
+                    // product = JSON.stringify(product);
+                    $http.post('/productos', product).
+                      success(function(data, status, headers, config) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        debugger;
+                      }).
+                      error(function(data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        debugger;
+                      });
+                      // $http({method:"POST",url:'/productos/', data:product});
+                      // product.reviews.push(this.review);
+                      // this.review = {};
                     };
                   },
       controllerAs: 'ReviewController'

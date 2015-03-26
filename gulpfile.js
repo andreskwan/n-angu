@@ -55,8 +55,10 @@ gulp.task('nodemon', function(cb) {
   // We use this `called` variable to make sure the callback is only executed once
   var called = false;
   return nodemon({
-    script: 'server.js',
-    watch: ['server.js','builds/development/views/*.html']
+    script: 'server.js'
+    , watch: ['server.js','builds/development/views/*.html']
+    , env: {'NODE_ENV':'development'}
+    , nodeArgs: ['--debug']
   })
   .on('start', function onStart() {
     if (!called) {

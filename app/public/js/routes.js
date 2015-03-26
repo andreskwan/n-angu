@@ -1,12 +1,17 @@
 (function() {
     //this module depends on
-    // 'store-products' module 
+    // 'store-products' module
     // 'ngRoute'
   angular.module('gemStore')
   //how to use this with directives?
   .config(['$routeProvider',function($routeProvider) {
     // debugger;
     $routeProvider.
+      when('/create',
+      {
+        templateUrl: 'partials/product-create.html',
+        controller: 'ProductCreateController'
+      }).
       when('/products',
       {
         templateUrl: 'partials/products.html',

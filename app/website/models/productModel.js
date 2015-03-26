@@ -9,7 +9,7 @@ var Product = function (conf){
 
 Product.prototype.post = function (data, callback){
 	// logger.info("MODEL - SAVE - Product.prototype.save");
-	// logger.info("MODEL - SAVE - data:", data);
+	logger.info("MODEL - SAVE - data:", data);
 	// A.findOneAndUpdate(conditions, update, options)
 	this.model.findOneAndUpdate({
 		name       : data.name,
@@ -29,6 +29,7 @@ Product.prototype.post = function (data, callback){
 	.exec(function (err, doc){
 		//callback al controlador por que ya llego el objeto
 		callback(doc);
+		debugger;
 	});
 };
 Product.prototype.get = function (query, callback){

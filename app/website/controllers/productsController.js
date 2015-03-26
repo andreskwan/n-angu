@@ -14,7 +14,8 @@ app.route('/productos/:id?')
 	.post( function (req, res){
 		// logger.info("REST - POST - method");
 		var productoDB       = new ProductModel();
-		// logger.info("req.body.producto:",req.body.producto);
+		// logger.info("REST - POST - req.body:",req.body);
+		logger.info("REST - POST - req.body.producto:",req.body.producto);
 		var productoNuevo    = req.body.producto;
 		productoDB.post(productoNuevo, function(doc){
 			// debugger;

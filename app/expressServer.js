@@ -50,7 +50,7 @@ var ExpressServer = function (config){
 			});
 		});
 	}
-	// logger.info('Environment :', env.toUpperCase());
+	logger.info('EXPRESS - Environment :', env.toUpperCase());
 	/**
 	*	routes
 	*/
