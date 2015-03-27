@@ -91,18 +91,15 @@ gulp.task('nodemon', function(cb) {
 gulp.task('browser-sync', ['js', 'nodemon'], function() {
   var port = process.env.PORT || 3000;//port when app is running
   browserSync.init({
-
     // All of the following files will be watched
-    // files: ['public/**/*.*'],
-
+    files: ['builds/**/*.*'],
     // Tells BrowserSync on where the express app is running
     proxy: 'http://localhost:' + port,
-
     // This port should be different from the express app port
     port: 4000,
-
     // Which browser should we launch?
-    browser: ['google chrome']
+    // browser: ['google chrome']
+    browser: "google chrome"
   });
 });
 
