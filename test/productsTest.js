@@ -11,7 +11,7 @@ var host     = process.env.API_TEST_HOST || api;
 request      = request(host);
 
 function createProduct(){
-	logger.info("TEST - BeforeEach");
+	// logger.info("TEST - BeforeEach");
 	var id;
 	var data = {
 		producto:{

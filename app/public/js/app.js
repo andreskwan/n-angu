@@ -1,7 +1,7 @@
 (function() {
     //'gemStore' module depends on 'store-products' modules
   angular.module('gemStore',['ngRoute','productsModule','productModule', 'PerfilModule'])
-
+  .constant("Constantes",{"servidor-url":"http://www.epsilondx.com/django/index.fcgi"})
   .config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('%%');
     $interpolateProvider.endSymbol('%%');

@@ -3,6 +3,7 @@
     <div ng-controller="PerfilController as pCtrl">
       <form novalidate class="css-form">
         Name: <input type="text" ng-model="user.name" required /><br />
+        Apellidos: <input type="text" ng-model="user.apellido" required /><br />
         E-mail: <input type="email" ng-model="user.email" required /><br />
         Gender: <input type="radio" ng-model="user.gender" value="male" />male
         <input type="radio" ng-model="user.gender" value="female" />female<br />
@@ -22,20 +23,3 @@
     background-color: #78FA89;
   }
 </style>
-
-<script>
-  angular.module('formExample', [])
-    .controller('ExampleController', ['$scope', function($scope) {
-      $scope.master = {};
-
-      $scope.update = function(user) {
-        $scope.master = angular.copy(user);
-      };
-
-      $scope.reset = function() {
-        $scope.user = angular.copy($scope.master);
-      };
-
-      $scope.reset();
-    }]);
-</script>

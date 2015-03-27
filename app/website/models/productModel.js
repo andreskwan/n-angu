@@ -9,7 +9,7 @@ var Product = function (conf){
 
 Product.prototype.post = function (data, callback){
 	// logger.info("MODEL - SAVE - Product.prototype.save");
-	logger.info("MODEL - SAVE - data:", data);
+	// logger.info("MODEL - SAVE - data:", data);
 	// A.findOneAndUpdate(conditions, update, options)
 	this.model.findOneAndUpdate({
 		name       : data.name,
@@ -33,7 +33,7 @@ Product.prototype.post = function (data, callback){
 	});
 };
 Product.prototype.get = function (query, callback){
-	logger.info("MODEL - GET - query: ",query);
+	// logger.info("MODEL - GET - query: ",query);
 	//aqui deberia cambiar este objeto y solo dejar el query
 	//de esta manera es mas plural, puedo buscar por otros criterios
 	var obj = {"_id":query};
