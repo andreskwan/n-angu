@@ -29,7 +29,7 @@ Product.prototype.post = function (data, callback){
 	.exec(function (err, doc){
 		//callback al controlador por que ya llego el objeto
 		callback(doc);
-		debugger;
+		// debugger;
 	});
 };
 Product.prototype.get = function (query, callback){

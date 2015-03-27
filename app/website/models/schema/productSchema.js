@@ -5,6 +5,8 @@ var Schema   = mongoose.Schema;
 var productSchema = new Schema({
 		// _id        : Schema.Types.ObjectId,
 		name       : String,
+		email      : String,
+		gender     : String,
 		description: String,
 		shine      : String,
 		price      : String,
