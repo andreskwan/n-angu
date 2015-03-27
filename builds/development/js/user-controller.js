@@ -28,9 +28,12 @@
 	      	// debugger;
 	      	// product = {"producto":user};
         	// console.log(product);
+	        UserFactory.save(function(user){
+	        	console.log(postResult);
+	        },function (error){
+	        	console.log("Error.status",error.status);
+	        })
 
-	        var postResult = UserFactory.save(user)
-	        console.log(postResult);
 
 	        // $http.post('/productos', product).
          //        success(function(data, status, headers, config) {
