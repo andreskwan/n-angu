@@ -1,10 +1,12 @@
 (function(){
-	angular.module('PerfilModule', [])
-	.controller('PerfilController',['$http', '$scope',
-		function($http, $scope){
-			this.perfil = gem;
+	angular.module('PerfilModule', ['gemStore'])
+	.controller('PerfilController',['$http', '$scope', 'Constantes',
+		function($http, $scope, Constantes){
+			// this.perfil = 
 			// $scope.perfil = {"name":"andres"};
 			// alert("Welcome");
+			debugger;
+			console.log("gemStore.Constantes:",gemStore.Constantes)
 			$scope.master = {};
 
 	      $scope.update = function(user) {
