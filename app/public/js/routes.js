@@ -12,10 +12,10 @@
         templateUrl: 'partials/product-create.html',
         controller: 'ProductCreateController'
       }).
-      when('/perfil',
+      when('/user',
       {
-        templateUrl: 'partials/perfil.html',
-        controller: 'PerfilController'
+        templateUrl: 'partials/user.html',
+        controller: 'UserController'
       }).
       when('/products',
       {

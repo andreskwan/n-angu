@@ -1,22 +1,22 @@
 (function(){
-	angular.module('PerfilModule', ['ngResource'])
-	.factory("PerfilFactory",['$resource', 'Constantes',
+	angular.module('UserModule', ['ngResource'])
+	.factory("UserFactory",['$resource', 'Constantes',
 		function($resource, Constantes){
 			return $resource(Constantes.url+"/usuarios/:id/")
 			// return $resource("/productos/:id/");
 		}])
-	.controller('PerfilController',['$http', '$scope', 'Constantes','PerfilFactory',
-		function($http, $scope, Constantes, PerfilFactory){
+	.controller('UserController',['$http', '$scope', 'Constantes','UserFactory',
+		function($http, $scope, Constantes, UserFactory){
 			// this.perfil =
 			// $scope.perfil = {"name":"andres"};
 			// alert("Welcome");
 			// debugger;
-			// var datosQuery = PerfilFactory.query(function (){
+			// var datosQuery = UserFactory.query(function (){
 			// 	// $scope.datos = datosQuery;
 			// 	console.log(datosQuery);
 			// });
 
-			// var datosGet = PerfilFactory.get({id:2}, function(){
+			// var datosGet = UserFactory.get({id:2}, function(){
 			// 	// $scope.datos = datosGet;
 			// 	console.log(datosGet);
 			// });
@@ -29,7 +29,7 @@
 	      	// product = {"producto":user};
         	// console.log(product);
 
-	        var postResult = PerfilFactory.save(user)
+	        var postResult = UserFactory.save(user)
 	        console.log(postResult);
 
 	        // $http.post('/productos', product).
