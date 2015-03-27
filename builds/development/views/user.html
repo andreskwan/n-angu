@@ -6,11 +6,16 @@
         Apellido1: <input type="text" ng-model="user.apellido1" required /><br />
         Apellido2: <input type="text" ng-model="user.apellido2" required /><br />
         Documento: <input type="number" ng-model="user.numero_documento" required /><br />
-        Rol: <input type="number" ng-model="user.rol" required /><br />
+        <!-- Rol: <input type="number" ng-model="user.rol" required /><br /> -->
         <!-- E-mail: <input type="email" ng-model="user.email" required /><br /> -->
         <!-- Gender: <input type="radio" ng-model="user.gender" value="male" />male -->
         <!-- <input type="radio" ng-model="user.gender" value="female" />female<br /> -->
-        
+        <select ng-model="user.rol" class="form-control" 
+                ng-options="role.id as role.nombre for role in roles "
+                title="Roles">
+          <option value>Seleccione perfil</option>
+        </select>
+
         <input type="button" ng-click="reset()" value="Reset" />
         <input type="submit" ng-click="update(user)" value="Save" />
       </form>
