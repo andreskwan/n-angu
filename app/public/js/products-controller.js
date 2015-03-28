@@ -18,26 +18,6 @@
                 // or server returns response with an error status.
           );
   }])
-  //template for directive
-  // .directive('Products',function(){
-  //   // Runs during compile
-  //   return {
-  //     // name: '',
-  //     // priority: 1,
-  //     // terminal: true,
-  //     // scope: {}, // {} = isolate, true = child, false/undefined = no change
-  //     controller: function($scope, $element, $attrs, $transclude) {},
-  //     // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
-  //     restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
-  //     // template: '',
-  //     templateUrl: 'partials/products.html',
-  //     // replace: true,
-  //     // transclude: true,
-  //     // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
-  //     // link: function($scope, iElm, iAttrs, controller) {
-  //     // }
-  //   };
-  // })
   .directive("productGallery", function() {
     return {
       restrict: 'E',
@@ -89,22 +69,22 @@
       controller: function($http){
                     this.review = {};
                     this.addReview = function(product){
-                    debugger;
-                    console.log(product.review)
+                    // debugger;
+                    console.log(product.review);
                     product = {"producto":product};
-                    console.log(product)
+                    console.log(product);
                     // $http({method:"POST",url:'/productos/', data:product});
                     // product = JSON.stringify(product);
                     $http.post('/productos', product).
                       success(function(data, status, headers, config) {
                         // this callback will be called asynchronously
                         // when the response is available
-                        debugger;
+                        // debugger;
                       }).
                       error(function(data, status, headers, config) {
                         // called asynchronously if an error occurs
                         // or server returns response with an error status.
-                        debugger;
+                        // debugger;
                       });
                       // $http({method:"POST",url:'/productos/', data:product});
                       // product.reviews.push(this.review);

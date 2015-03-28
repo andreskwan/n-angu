@@ -1,13 +1,13 @@
 (function(){
-	angular.module('UserModule', ['ngResource'])
+	angular.module('userModule', ['ngResource'])
 	.factory("UserFactory",['$resource', 'Constantes',
 		function($resource, Constantes){
-			return $resource(Constantes.url+"/usuarios/:id/")
+			return $resource(Constantes.url+"/usuarios/:id/");
 			// return $resource("/productos/:id/");
 		}])
 	.factory("RoleFactory",['$resource', 'Constantes',
 		function($resource, Constantes){
-			return $resource(Constantes.url+"/roles/:id/")
+			return $resource(Constantes.url+"/roles/:id/");
 			// return $resource("/productos/:id/");
 		}])
 	.controller('UserController',['$http', '$scope', 'Constantes','UserFactory','RoleFactory',
@@ -20,12 +20,12 @@
 	        	// debugger;
 	        	$scope.roles = roles;
 	        },function (error){
-	        	console.log("Error.status",error.status);	
+	        	console.log("Error.status",error.status);
 	        });
 	      $scope.update = function(user) {
 	      	// product = {"producto":user};
         	console.log(user);
-	      	debugger;
+	      	// debugger;
 	        UserFactory.save(function(user){
 	        	console.log(postResult);
 	        },function (error){

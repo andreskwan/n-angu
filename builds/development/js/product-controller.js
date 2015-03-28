@@ -27,7 +27,7 @@
         var controller = this;
         // Simple GET request example
         this.saveProduct =  function(product){
-              debugger;
+              // debugger;
               product = {"producto":product};
               console.log(product)
               // $http({method:"POST",url:'/productos/', data:product});
@@ -36,12 +36,12 @@
                 success(function(data, status, headers, config) {
                   // this callback will be called asynchronously
                   // when the response is available
-                  debugger;
+                  // debugger;
                 }).
                 error(function(data, status, headers, config) {
                   // called asynchronously if an error occurs
                   // or server returns response with an error status.
-                  debugger;
+                  // debugger;
                 });
                 // $http({method:"POST",url:'/productos/', data:product});
                 // product.reviews.push(this.review);

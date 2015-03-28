@@ -24,9 +24,11 @@
   <!--  Review Form -->
   <h4>Submit a Review</h4>
   <fieldset class="form-group">
+
     <select ng-model="product.reviews.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
       <option value>Rate the Product</option>
     </select>
+    
   </fieldset>
   <fieldset class="form-group">
     <textarea ng-model="product.reviews.review.body" class="form-control" placeholder="Write a short review of the .." title="Review"></textarea>
