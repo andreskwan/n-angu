@@ -15,19 +15,13 @@ var shell       = require('gulp-shell');
 gulp.task('mongodb', function(){
   return gulp.src('')
   .pipe(shell(['mongod --dbpath=data --config /usr/local/etc/mongod.conf']));
-});
-//old
-gulp.task('js', function() {
-  return gulp.src('builds/development/js/**/*')
-  .pipe(rename(function (path) {
-        path.dirname += "/app/public/js";
-        // console.log("path: ", path);
-    }))
-  .pipe(gulp.dest('./'))
+})
+.task('js', function() {
+  return gulp.src('builds/development/js/**/*',{ base: 'builds/development'})
+  .pipe(gulp.dest('./app/public'))
   .pipe(notify({message: 'JS refreshed'}));
-});
-
-gulp.task('html', function() {
+})
+.task('html', function() {
   return gulp.src('builds/development/views/*.html')
   .pipe(rename(function (path) {
         path.dirname += "/app/public/partials";
@@ -36,20 +30,17 @@ gulp.task('html', function() {
   .pipe(gulp.dest('./'))
   // .pipe(browserSync.reload())
   .pipe(notify({message: 'Views refreshed'}));
-});
-
-gulp.task('css', function() {
+})
+.task('css', function() {
   return gulp.src('builds/development/css/*.css')
   .pipe(notify({message: 'CSS refreshed'}));
-});
-
-gulp.task('watch', function() {
+})
+.task('watch', function() {
 	gulp.watch('builds/development/js/**/*', ['js']);
 	gulp.watch('builds/development/css/*.css', ['css']);
 	gulp.watch(['builds/development/views/*.html'], ['html']);
-});
-
-gulp.task('nodemon', function(cb) {
+})
+.task('nodemon', function(cb) {
   var nodemon = require('gulp-nodemon');
 
   // We use this `called` variable to make sure the callback is only executed once
@@ -85,10 +76,10 @@ gulp.task('nodemon', function(cb) {
       });
     }, 500);
   });
-});
+})
 
 // Make sure `nodemon` is started before running `browser-sync`.
-gulp.task('browser-sync', ['js', 'nodemon'], function() {
+.task('browser-sync', ['js', 'nodemon'], function() {
   var port = process.env.PORT || 3000;//port when app is running
   browserSync.init({
     // All of the following files will be watched
@@ -101,14 +92,12 @@ gulp.task('browser-sync', ['js', 'nodemon'], function() {
     // browser: ['google chrome']
     browser: "google chrome"
   });
-});
-
+})
 // use default task to launch BrowserSync and watch JS files
-gulp.task('default', ['browser-sync'], function () {
+.task('default', ['browser-sync'], function () {
     // add browserSync.reload to the tasks array to make
     // all browsers reload after tasks are complete.
-    gulp.watch("js/*.js", ['js', browserSync.reload]);
+    gulp.watch("js/**/*", ['js', browserSync.reload]);
     gulp.watch("builds/development/views/*.html", ['html', browserSync.reload]);
-});
-
-gulp.task('default', ['watch', 'html', 'js', 'css', 'nodemon','browser-sync']);
+})
+.task('default', ['watch', 'html', 'js', 'css', 'nodemon','browser-sync']);
