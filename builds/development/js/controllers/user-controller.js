@@ -2,30 +2,25 @@
 	angular.module('userModule', [])
 	.controller('UserController',['$http', '$scope', 'Constantes','UserFactory','RoleFactory',
 		function($http, $scope, Constantes, UserFactory, RoleFactory){
-	        RoleFactory.all().query(function (roles){
+	        RoleFactory.query(function (roles){
 	        	// $scope.roles = [{id:"1","name":"Empresario"},{id:"2","name":"Empre"}];
 	        	// debugger;
+	        	console.log(roles);
 	        	$scope.roles = roles;
 	        },function (error){
-	        	console.log("Error.status",error.status);
+	        	console.log("Error.status", error.status);
 	        });
-	    //     RoleFactory.all()
-	    //     	.success(function (roles){
-					// debugger;
-		   //      	$scope.roles = roles;
-	    //     	})
-	    //     	.error(function (error){
-	    //     		debugger;
-	    //     		console.log("Error.status",error.status);
-	    //     	});
 	      $scope.update = function(user) {
 	      	// product = {"producto":user};
         	console.log(user);
 	      	// debugger;
-	        UserFactory.save(function(user){
-	        	console.log(postResult);
+	        UserFactory.save(user, function(user){
+	        	console.log(user);
+	        	// debugger;
 	        },function (error){
 	        	console.log("Error.status",error.status);
+	        	console.log("Error",error);
+	        	// debugger;
 	        });
 	      };
 		  $scope.master = {};
