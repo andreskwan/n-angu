@@ -42,7 +42,7 @@ selenium-server-standalone-2.45.0.jar
 _bootstrap.php
 UnitTester.php
 FunctionalTester.php
-AcceptanceTester.
+AcceptanceTester.php
 _support/
 _output/
 _data/
