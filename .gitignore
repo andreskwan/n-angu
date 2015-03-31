@@ -35,4 +35,14 @@ bower_components/
 app/public
 #Djago prj
 python/
+#php - selenium - files
 *.yml
+codecept.phar
+selenium-server-standalone-2.45.0.jar
+_bootstrap.php
+UnitTester.php
+FunctionalTester.php
+AcceptanceTester.
+_support/
+_output/
+_data/
