@@ -1,5 +1,5 @@
 var logger   = require('../../lib/logger/logger.js');
-var HomeView = require('../views/HomeView.js');
+var HomeView = require('../views/homeView.js');
 // var HomeModel = require('../models/HomeModel.js');
 
 var Home = function (conf){

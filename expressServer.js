@@ -34,7 +34,7 @@ var ExpressServer = function (config){
 	//var path = require('path');
 	//this.app.set('views', path.join(__dirname,'views'));
 	//AngularJS - should be angular views
-	this.app.set('views', __dirname + '/website/views/templates');
+	this.app.set('views','./app/public/templates');
 	
 	/**
 	*	Dev enviroment configuration
