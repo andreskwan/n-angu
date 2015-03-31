@@ -9,31 +9,31 @@
     $routeProvider.
       when('/create',
       {
-        templateUrl: 'partials/product-create.html',
+        templateUrl: 'templates/products/product-create.html',
         controller: 'ProductCreateController'
       }).
       when('/user',
       {
-        templateUrl: 'partials/user.html',
+        templateUrl: 'templates/user/user.html',
         controller: 'UserController'
       }).
       when('/products',
       {
-        templateUrl: 'partials/products.html',
+        templateUrl: 'templates/products/products.html',
         controller: 'ProductsController'
       }).
       when('/products/:id',
       {
-        templateUrl: 'partials/product.html',
+        templateUrl: 'templates/products/product.html',
         controller: 'ProductController'
       }).
       when('/index',
       {
-        templateUrl: 'partials/index.html',
+        templateUrl: 'templates/index.html',
       }).
       when('/unal',
       {
-        templateUrl: 'partials/unal.html',
+        templateUrl: 'templates/unal.html',
       }).
       otherwise({
         redirectTo:'/products'

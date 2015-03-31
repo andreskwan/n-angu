@@ -21,7 +21,7 @@
   .directive("productGallery", function() {
     return {
       restrict: 'E',
-      templateUrl: 'partials/product-gallery.html',
+      templateUrl: 'templates/products/product-gallery.html',
       controller: function(){
           this.current = 0;
           this.setCurrent = function(imageNumber){
@@ -34,7 +34,7 @@
   .directive("productTabs", function() {
     return {
       restrict: 'E',
-      templateUrl: 'partials/product-tabs.html',
+      templateUrl: 'templates/products/product-tabs.html',
       controller: function(){
           this.tab = 1;
 
@@ -52,20 +52,20 @@
   .directive("productDescription", function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/product-description.html'
+      templateUrl: 'templates/products/product-description.html'
       // template: '<h4>Description</h4> <blockquote>{{product.description}}</blockquote>'
     };
   })
   .directive("productSpecs", function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/product-specs.html'
+      templateUrl: 'templates/products/product-specs.html'
     };
   })
   .directive("productReviews", function() {
     return {
       restrict: 'E',
-      templateUrl: "partials/product-reviews.html",
+      templateUrl: "templates/products/product-reviews.html",
       controller: function($http){
                     this.review = {};
                     this.addReview = function(product){

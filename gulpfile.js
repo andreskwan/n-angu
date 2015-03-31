@@ -22,12 +22,12 @@ gulp.task('mongodb', function(){
   .pipe(notify({message: 'JS refreshed'}));
 })
 .task('html', function() {
-  return gulp.src('builds/development/views/*.html')
-  .pipe(rename(function (path) {
-        path.dirname += "/app/public/partials";
-        // console.log("path: ", path);
-    }))
-  .pipe(gulp.dest('./'))
+  return gulp.src('builds/development/templates/**/*', { base: 'builds/development'})
+  // .pipe(rename(function (path) {
+  //       path.dirname += "/app/public";
+  //       // console.log("path: ", path);
+  //   }))
+  .pipe(gulp.dest('./app/public'))
   // .pipe(browserSync.reload())
   .pipe(notify({message: 'Views refreshed'}));
 })

@@ -9,13 +9,13 @@
   .directive("pageNavigation", function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/navbar.html'
+      templateUrl: 'templates/navbar.html'
     };
   })
   .directive("pageFooter", function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/footer.html'
+      templateUrl: 'templates/footer.html'
     };
   });
 })();
