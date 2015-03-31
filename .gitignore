@@ -33,3 +33,6 @@ css/boots*
 bower_components/
 # app/public should not be here, same files in builds/development
 app/public
+#Djago prj
+python/
+*.yml
