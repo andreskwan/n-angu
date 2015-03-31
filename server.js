@@ -1,9 +1,9 @@
 /**
 * Dependencies
 */
-var logger        = require('./app/lib/logger/logger.js');
+var logger        = require('./lib/logger/logger.js');
 var http          = require('http');
-var ExpressServer = require('./app/expressServer.js');
+var ExpressServer = require('./expressServer.js');
 var mongoose      = require('mongoose');
 // var socketIO      = require('./app/socketIO.js');
 var conf          = require('./conf.json'); 
@@ -11,6 +11,7 @@ var conf          = require('./conf.json');
 //normalizePort();
 var port    = process.env.PORT || conf.port;
 var express = new ExpressServer();
+
 //create a web server
 //express.app is the request listener 
 //- to handle request and responses

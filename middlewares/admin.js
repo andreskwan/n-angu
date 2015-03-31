@@ -5,5 +5,5 @@ module.exports = {
 	// "serve-favicon": require('./serve-favicon.js'),
 	"compression"  : require('./compression.js'),
 	"locals"       : require('./locals'),
-	"cors"       : require('./cors.js')
-}	
+	"cors"         : require('./cors.js')
+}

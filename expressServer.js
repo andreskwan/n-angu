@@ -20,6 +20,7 @@ var ExpressServer = function (config){
 		this.app.use(middlewares[middleware]);
 		// logger.info("middleware activado:",middleware);
 	}
+
 	/**
 	*	template engine - Swig
 	*/
@@ -34,6 +35,7 @@ var ExpressServer = function (config){
 	//this.app.set('views', path.join(__dirname,'views'));
 	//AngularJS - should be angular views
 	this.app.set('views', __dirname + '/website/views/templates');
+	
 	/**
 	*	Dev enviroment configuration
 	*/

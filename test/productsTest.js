@@ -4,7 +4,7 @@
 //hace lo mismo que postman
 var request  = require('supertest-as-promised');
 var api      = require('../server.js');
-var logger   = require('../app/lib/logger/logger.js');
+var logger   = require('../lib/logger/logger.js');
 // var async = require('async');
 //correr pruebas con diferentes host
 var host     = process.env.API_TEST_HOST || api;
