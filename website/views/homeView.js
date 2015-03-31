@@ -6,7 +6,10 @@ var Home = function (conf){
 
 Home.prototype.add = function (res, object){
 	// debugger;
-	res.render('home', object);
+	logger.info('####################################################');
+	logger.info('homeView.js: object', object);
+	logger.info('####################################################');
+	res.render('index', object);
 };
 
 module.exports = Home;

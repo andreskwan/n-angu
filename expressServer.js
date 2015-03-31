@@ -34,7 +34,7 @@ var ExpressServer = function (config){
 	//var path = require('path');
 	//this.app.set('views', path.join(__dirname,'views'));
 	//AngularJS - should be angular views
-	this.app.set('views','./app/public/templates');
+	this.app.set('views','./public');
 	
 	/**
 	*	Dev enviroment configuration
@@ -63,7 +63,7 @@ var ExpressServer = function (config){
 	for (var controller in router){
 		//identificar los prototipos
 		// logger.info("controller   : ",controller);
-		// logger.info("router["+controller+"].prototype",router[controller].prototype);
+		logger.info("router["+controller+"].prototype",router[controller].prototype);
 		for (var funcionalidad in router[controller].prototype){
 			//si se sigue este formato
 			//todas las funciones deben escribirse de esta manera
@@ -76,9 +76,9 @@ var ExpressServer = function (config){
 			var url = (controller == 'home')? '/':'/' + entorno + '/' + data;
 			// debugger;
 			logger.info("controller: "+controller+
-						'func: '+funcionalidad+', '+
-						'method: '+method+', '+
-						'url: '+url);
+						'\nfunc: '+funcionalidad+', '+
+						'\nmethod: '+method+', '+
+						'\nurl: '+url);
 			this.router(controller, funcionalidad, method, url);
 		}
 	}
