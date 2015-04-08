@@ -42,13 +42,22 @@ gulp.task('mongodb', function(){
   .pipe(notify({message: 'Home refreshed'}));
 })
 .task('css', function() {
-  return gulp.src('builds/development/css/*.css')
+  // return gulp.src('builds/development/css/*.css')
+  return gulp.src('builds/development/css/**/*',{ base: 'builds/development'})
+  .pipe(gulp.dest('./public'))
   .pipe(notify({message: 'CSS refreshed'}));
+})
+.task('images', function() {
+  // return gulp.src('builds/development/css/*.css')
+  return gulp.src('builds/development/images/**/*',{ base: 'builds/development'})
+  .pipe(gulp.dest('./public'))
+  .pipe(notify({message: 'Images refreshed'}));
 })
 .task('watch', function() {
 	gulp.watch('builds/development/js/**/*', ['js']);
 	gulp.watch('builds/development/css/*.css', ['css']);
 	gulp.watch(['builds/development/views/*.html'], ['html']);
+  gulp.watch(['builds/development/images/**/*'], ['images']);
 })
 .task('nodemon', function(cb) {
   var nodemon = require('gulp-nodemon');
@@ -110,4 +119,4 @@ gulp.task('mongodb', function(){
     gulp.watch("js/**/*", ['js', browserSync.reload]);
     gulp.watch("builds/development/views/*.html", ['html', browserSync.reload]);
 })
-.task('default', ['watch','home','html', 'js', 'css', 'nodemon','browser-sync']);
+.task('default', ['watch','home','html', 'js', 'css','images', 'nodemon','browser-sync']);
