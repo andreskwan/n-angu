@@ -56,8 +56,8 @@ gulp.task('mongodb', function(){
 .task('watch', function() {
 	gulp.watch('builds/development/js/**/*', ['js']);
 	gulp.watch('builds/development/css/*.css', ['css']);
-	gulp.watch(['builds/development/views/*.html'], ['html']);
   gulp.watch(['builds/development/images/**/*'], ['images']);
+	gulp.watch(['builds/development/templates/**/*'], ['html']);
 })
 .task('nodemon', function(cb) {
   var nodemon = require('gulp-nodemon');
@@ -65,10 +65,10 @@ gulp.task('mongodb', function(){
   // We use this `called` variable to make sure the callback is only executed once
   var called = false;
   return nodemon({
-    script: 'server.js'
-    , watch: ['server.js','builds/development/views/*.html']
-    , env: {'NODE_ENV':'development'}
-    , nodeArgs: ['--debug']
+                    script  : 'server.js',
+                    watch   : ['server.js','builds/development/views/*.html'],
+                    env     : {'NODE_ENV':'development'},
+                    nodeArgs: ['--debug']
   })
   .on('start', function onStart() {
     if (!called) {

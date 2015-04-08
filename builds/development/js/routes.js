@@ -12,6 +12,11 @@
         templateUrl: 'templates/user/user.html',
         controller: 'UserController'
       }).
+      when('/products',
+      {
+        templateUrl: '/templates/products/products.html',
+        controller: 'UserController'
+      }).
       when('/index',
       {
         templateUrl: 'templates/index.html',
