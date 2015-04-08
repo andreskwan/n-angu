@@ -8,7 +8,7 @@
         var store = this;
         $http({method:'GET', url: '/productos'})
           .success(function (data){
-                    data = data['productos'];
+                    data = data.productos;
                     // debugger;
                     $scope.products  = data;
                     $scope.gemsOrder = 'name';

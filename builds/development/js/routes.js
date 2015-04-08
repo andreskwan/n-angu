@@ -15,7 +15,7 @@
       when('/products',
       {
         templateUrl: '/templates/products/products.html',
-        controller: 'UserController'
+        controller: 'ProductsController'
       }).
       when('/index',
       {
