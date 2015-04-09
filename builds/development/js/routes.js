@@ -7,6 +7,11 @@
   .config(['$routeProvider',function($routeProvider) {
     // debugger;
     $routeProvider.
+    when('/notes',
+      {
+        templateUrl: 'templates/notes/notes.html',
+        controller: 'UserController'
+      }).
       when('/user',
       {
         templateUrl: 'templates/user/user.html',
@@ -25,8 +30,12 @@
       {
         templateUrl: 'templates/unal.html',
       }).
-      otherwise({
+      when('/',
+      {
         redirectTo:'/user'
+      })
+      .otherwise({
+        redirectTo:'/notes'
       });
   }]);
 })();
