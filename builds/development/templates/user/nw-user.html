@@ -3,11 +3,7 @@
 
   <div class="users-wrapper">
     <a class="card-users" ng-repeat="user in users">
-      <div class="card" title="{{user.name}}">
-        <h2 class="h3">{{user.name}}</h2>
-        <p>{{user.bio}}</p>
-      </div>
+      <nw-card header="user.name" description="user.bio"></nw-card>
     </a>
   </div>
-
 </div>

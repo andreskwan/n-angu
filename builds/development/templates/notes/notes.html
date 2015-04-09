@@ -6,7 +6,7 @@
 
     <div class="note-wrapper">
       <a class="card-notes" ng-repeat="note in notes" ng-href="#/notes/{{note.id}}">
-        <nw-card></nw-card>
+        <nw-card header="note.title" description="note.description"></nw-card>
       </a>
 
     </div>
