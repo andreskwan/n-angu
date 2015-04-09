@@ -10,7 +10,7 @@
     when('/notes',
       {
         templateUrl: 'templates/notes/notes.html',
-        controller: 'NotesController'
+        controller: 'NotesIndexController'
       }).
     when('/notes/new',
       {
