@@ -15,7 +15,7 @@
     when('/notes/new',
       {
         templateUrl: 'templates/notes/edit.html',
-        // controller: 'UserController'
+        controller: 'NotesCreateController'
       }).
       when('/user',
       {
