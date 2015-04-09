@@ -6,11 +6,11 @@
 			// name: '',
 			// priority: 1,
 			// terminal: true,
-			// scope: {}, // {} = isolate, true = child, false/undefined = no change
-			controller: function($scope) {
-				$scope.header = "Note Tile";
-		        $scope.description = 'A lovely note description.';
-			},
+			scope: {
+				header : "=",
+				description : "="
+
+			}, // {} = isolate, true = child, false/undefined = no change
 			// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 			restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
 			// template: '',
