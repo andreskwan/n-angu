@@ -17,6 +17,11 @@
         templateUrl: 'templates/notes/edit.html',
         controller: 'NotesCreateController'
       }).
+    when('/notes/:id',
+      {
+        templateUrl: 'templates/notes/show.html',
+        controller: 'NotesShowController'
+      }).
       when('/user',
       {
         templateUrl: 'templates/user/user.html',
