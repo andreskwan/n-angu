@@ -1,5 +1,5 @@
 (function(){
-	angular.module('userModule', [])
+	angular.module('gemStore')
  	.controller('UserController',['$http', '$scope', 'Constantes','UserFactory','RoleFactory','GravatarFactory',
 		function($http, $scope, Constantes, UserFactory, RoleFactory, GravatarFactory){
 	        RoleFactory.query(function (roles){
@@ -12,7 +12,7 @@
 	        });
 	        $scope.gravatarUrl = function(email){
 	        	var avatar = GravatarFactory.generate(email);
-	        	debugger;
+	        	// debugger;
 	        	return avatar;
 	        };
 		    $scope.update = function(user) {

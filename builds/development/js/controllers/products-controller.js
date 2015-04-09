@@ -1,5 +1,5 @@
 (function(){
-	angular.module('productsModule', [])
+	angular.module('gemStore')
   //why this module depends on $http
   .controller('ProductsController', ['$http', '$scope',
     //why this function needs the $http service?
