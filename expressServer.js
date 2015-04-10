@@ -1,14 +1,15 @@
 //dev enviroment
-var env           = process.env.NODE_ENV || 'production';
-var express       = require('express');
-var middlewares   = require('./middlewares/admin.js');
-// var cons       = require('consolidate');
-var swig          = require('swig');
-var logger        = require('./lib/logger/logger.js');
+var env          = process.env.NODE_ENV || 'production';
+var express      = require('express');
+var middlewares  = require('./middlewares/admin.js');
+// var cons      = require('consolidate');
+var swig         = require('swig');
+var logger       = require('./lib/logger/logger.js');
 
 //routes
-var router        = require('./website/router.js');
-var RESTapi       = require('./website/controllers/productsController.js');
+var router       = require('./website/router.js');
+var ProductsREST = require('./website/controllers/productsController.js');
+var NotesREST    = require('./website/controllers/notesController.js');
 //creando el objeto
 var ExpressServer = function (config){
 	//si vacio, es un objeto vacio
@@ -57,7 +58,8 @@ var ExpressServer = function (config){
 	*	routes
 	*/
 	//Model REST
-	this.app.use(RESTapi);
+	this.app.use(ProductsREST);
+	this.app.use(NotesREST);
 
 	//Router and controllers
 	for (var controller in router){
