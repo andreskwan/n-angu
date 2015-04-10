@@ -2,7 +2,7 @@
 	angular.module('gemStore')
 	.controller('NotesIndexController', ['$http', '$scope',function($http,$scope){
 		//TODO: I need to create this in mongoDB
-		 $http({method:'GET', url:'/notes'})
+		 $http({method:'GET', url:'/notas'})
         .success(function(data){
           $scope.notes = data;
       	})

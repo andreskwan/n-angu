@@ -3,7 +3,7 @@
 	.controller('NotesShowController', ['$routeParams','$http', function($http, $routeParams){
 		var controller = this;
 		//I need to create this in mongoDB
-		 $http({method:'GET', url:'/notes/'+$routeParams.id})
+		 $http({method:'GET', url:'/notas/'+$routeParams.id})
         .success(function(data){
           controller.notes = data;
       	})
