@@ -1,6 +1,6 @@
 (function(){
 	angular.module('gemStore')
-	.directive('nwCard', ['',function(){
+	.directive('nwCardDirective', [function(){
 		// Runs during compile
 		return {
 			// name: '',
