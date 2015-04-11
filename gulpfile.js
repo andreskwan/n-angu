@@ -45,13 +45,13 @@ gulp.task('mongodb', function(){
   .pipe(gulp.dest('./public'))
   .pipe(notify({message: 'Images refreshed'}));
 })
-.task('watch', function() {
-	gulp.watch('builds/development/js/**/*', ['js']);
-	gulp.watch('builds/development/css/*.css', ['css']);
-  gulp.watch(['builds/development/images/**/*'], ['images']);
-	gulp.watch(['builds/development/templates/**/*'], ['html']);
-  gulp.watch('builds/development/index.html', ['home']);
-})
+// .task('watch', function() {
+// 	gulp.watch('builds/development/js/**/*', ['js']);
+// 	gulp.watch('builds/development/css/*.css', ['css']);
+//   gulp.watch(['builds/development/images/**/*'], ['images']);
+// 	gulp.watch(['builds/development/templates/**/*'], ['html']);
+//   gulp.watch('builds/development/index.html', ['home']);
+// })
 .task('nodemon', function(cb) {
   var nodemon = require('gulp-nodemon');
 
@@ -59,7 +59,7 @@ gulp.task('mongodb', function(){
   var called = false;
   return nodemon({
                     script  : 'server.js',
-                    watch   : ['server.js','builds/development/templates/**/*.html'],
+                    // watch   : ['server.js','builds/development/templates/**/*.html'],
                     env     : {'NODE_ENV':'development'},
                     nodeArgs: ['--debug']
   })
@@ -111,8 +111,8 @@ gulp.task('mongodb', function(){
     // gulp.watch("js/**/*", ['js', browserSync.reload]);
     gulp.watch("builds/development/templates/**/*.html", ['html', browserSync.reload]);
     gulp.watch('builds/development/js/**/*', ['js',browserSync.reload]);
-    gulp.watch('builds/development/css/*.css', ['css',browserSync.reload]);
-    gulp.watch('builds/development/images/**/*', ['images',browserSync.reload]);
+    // gulp.watch('builds/development/css/*.css', ['css',browserSync.reload]);
+    // gulp.watch('builds/development/images/**/*', ['images',browserSync.reload]);
     gulp.watch('builds/development/index.html', ['home',browserSync.reload]);
 })
-.task('default', ['watch','home','html', 'js', 'css','images', 'nodemon','browser-sync']);
+.task('default', ['home','html', 'js', 'css','images', 'nodemon']);

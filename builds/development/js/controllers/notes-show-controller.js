@@ -1,8 +1,10 @@
+//show one note
 (function(){
 	angular.module('gemStore')
 	.controller('NotesShowController', ['$routeParams','$http', function($http, $routeParams){
 		var controller = this;
 		//I need to create this in mongoDB
+		debugger;
 		 $http({method:'GET', url:'/notas/'+$routeParams.id})
         .success(function(data){
           controller.notes = data;

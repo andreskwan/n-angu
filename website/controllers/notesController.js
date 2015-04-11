@@ -14,8 +14,8 @@ app.route('/notas/:id?')
 	.post( function (req, res){
 		// logger.info("REST - POST - method");
 		var notaDB       = new NoteModel();
-		// logger.info("REST - POST - req.body:",req.body);
-		// logger.info("REST - POST - req.body.nota:",req.body.nota);
+		logger.info("REST - POST - req.body:",req.body);
+		logger.info("REST - POST - req.body.nota:",req.body.nota);
 		var notaNueva    = req.body.nota;
 		notaDB.post(notaNueva, function(doc){
 			// debugger;

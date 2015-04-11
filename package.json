@@ -28,6 +28,7 @@
     "gulp-rename": "^1.2.0",
     "gulp-shell": "^0.3.0",
     "gulp-util": "^3.0.4",
+    "karma": "^0.12.31",
     "mocha": "^1.21.4",
     "supertest": "^0.13.0",
     "supertest-as-promised": "^1.0.0"
