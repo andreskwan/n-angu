@@ -5,11 +5,10 @@
     </div>
 
     <div class="note-wrapper">
-      <a class="card-notes" ng-repeat="note in notes" >
+      <a class="card-notes" ng-repeat="note in notes" ng-href="#/notes/{{note.id}}">
         <nw-card header="note.title" 
                  description="note.description"
-                 tweeted="note.tweeted" 
-                 ng-href="#/notes/{{note.id}}"></nw-card>
+                 tweeted="note.tweeted"></nw-card>
         <button class="btn" ng-click="tweetThatNote(note.description)">Tweet It!</button>
       </a>
 
