@@ -5,8 +5,11 @@
 			restrict: 'E',
 			templateUrl: 'templates/directives/nw-card.html',
 			scope: {
-				header     : "=",
 				description: "=",
+				header     : "=",
+				icon       : "=",
+				id         : "=",
+				image      : "=",
 				tweeted    : '='
 			},
 			link: function($scope, element) {

@@ -6,11 +6,9 @@
 			var avatarSize = 80;
 			//gravatar addres
 			var avatarUrl = "http://en.gravatar.com/avatar/";
-			return {
-				generate : function(email){
+			return function(email){
 					debugger;
 					return avatarUrl + CriptoJS.md5(email) + "?size=" + avatarSize.toString();
-				}
-			};
+				};
 		}]);
 })();

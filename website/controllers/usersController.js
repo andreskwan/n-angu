@@ -1,8 +1,8 @@
-var app       = require('express')();
-var logger    = require('../../lib/logger/logger.js');
-var NoteModel = require('../models/noteModel.js');
+var app          = require('express')();
+var logger       = require('../../lib/logger/logger.js');
+var UserModel = require('../models/UserModel.js');
 
-app.route('/notas/:id?')
+app.route('/usuarios/:id?')
 	.all( function (req, res, next) {
 		// logger.info("REST - req.method: ",req.method);
 		// logger.info("REST - req.path: ",req.path);
@@ -13,26 +13,26 @@ app.route('/notas/:id?')
 	//POST
 	.post( function (req, res){
 		// logger.info("REST - POST - method");
-		var notaDB       = new NoteModel();
+		var usuarioDB       = new UserModel();
 		// logger.info("REST - POST - req.body:",req.body);
-		// logger.info("REST - POST - req.body.nota:",req.body.nota);
-		var notaNueva    = req.body.nota;
-		notaDB.post(notaNueva, function(doc){
+		// logger.info("REST - POST - req.body.usuario:",req.body.usuario);
+		var usuarioNuevo    = req.body.usuario;
+		usuarioDB.post(usuarioNuevo, function(doc){
 			// debugger;
 			// logger.info("doc.toJSON",doc.toJSON());
 			res
 			.status(201)
 			.json({
-				nota: doc
+				usuario: doc
 			});
 		});
-		// notaNueva.id     = Date.now();
-		// db[notaNueva.id] = notaNueva;
+		// usuarioNuevo.id     = Date.now();
+		// db[usuarioNuevo.id] = usuarioNuevo;
 	})
 	//GET
 	.get( function (req, res, next){
 		var id   = req.params.id;
-		var notaDB = new NoteModel();
+		var usuarioDB = new UserModel();
 		// debugger;
 		if (!id){
 			//in get all reach this place.
@@ -40,7 +40,7 @@ app.route('/notas/:id?')
 			return next();
 		}
 		// logger.info("REST - GET - id: ",id);
-		notaDB.get(id, function(doc){
+		usuarioDB.get(id, function(doc){
 			// logger.info("REST - GET - doc:",doc);
 			if (!doc) {
 				res
@@ -50,14 +50,14 @@ app.route('/notas/:id?')
 			res
 			.status(200)
 			.json({
-				notas:doc
+				usuarios:doc
 			});
 		});
 	})
 	//PUT
 	.put( function (req, res, next){
 		// logger.info("REST - PUT method");
-		//obtengo id from params y la nota modificada
+		//obtengo id from params y la usuario modificada
 		// logger.info("PUT - server")
 		// logger.info("REST - PUT - req.params: ",req.params);
 		var id              = req.params.id;
@@ -72,32 +72,32 @@ app.route('/notas/:id?')
 		// //without modification
 		// logger.info("PUT - db[id] ",db[id]);
 
-		var notaActualizada = req;
+		var usuarioActualizada = req;
 		// logger.info("REST - PUT - req: ", req.body);
 		// logger.info("PUT - req.params: ",req.body);
 
-		//remplazar la nota, con la nueva info
-		//req.body.nota
-		// db[id]              = req.body.nota;
+		//remplazar la usuario, con la nueva info
+		//req.body.usuario
+		// db[id]              = req.body.usuario;
 		// logger.info("PUT - db[id] ",db[id]);
 		// //respondo
-		// var nota = db[id];
+		// var usuario = db[id];
 		// res
 		// .status(200)
 		// .json({
-		// 	nota : db[id]
+		// 	usuario : db[id]
 		// });
-		var notaDB       = new NoteModel();
-		// logger.info("req.body.nota:",req.body.nota);
-		var notaNueva    = req.body.nota;
+		var usuarioDB       = new UserModel();
+		// logger.info("req.body.usuario:",req.body.usuario);
+		var usuarioNuevo    = req.body.usuario;
 		//el id es importante
-		notaDB.put(notaNueva, function(doc){
+		usuarioDB.put(usuarioNuevo, function(doc){
 			// debugger;
 			// logger.info("doc.toJSON",doc.toJSON());
 			res
 			.status(200)
 			.json({
-				nota: doc
+				usuario: doc
 			});
 		});
 	})
@@ -114,11 +114,11 @@ app.route('/notas/:id?')
 		// res
 		// .status(204)
 		// .send();
-		var notaDB       = new NoteModel();
-		// logger.info("req.body.nota:",req.body.nota);
-		// var nota    = req.body.nota;
+		var usuarioDB       = new UserModel();
+		// logger.info("req.body.usuario:",req.body.usuario);
+		// var usuario    = req.body.usuario;
 		// el id es importante
-		notaDB.delete(id, function(){
+		usuarioDB.delete(id, function(){
 			// debugger;
 			// logger.info("REST - DELETE - success");
 			res
@@ -126,13 +126,13 @@ app.route('/notas/:id?')
 			.send();
 		});
 	});
-	app.get('/notas/', function (req, res){
-		var notaDB = new NoteModel();
-		notaDB.getAll(function(docs){
+	app.get('/usuarios/', function (req, res){
+		var usuarioDB = new UserModel();
+		usuarioDB.getAll(function(docs){
 		// logger.info("REST - GET-ALL doc:",docs);
 			res
 			.json({
-				notas:docs
+				usuarios:docs
 			});
 			// debugger;
 		});

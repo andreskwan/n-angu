@@ -10,6 +10,7 @@ var logger       = require('./lib/logger/logger.js');
 var router       = require('./website/router.js');
 var ProductsREST = require('./website/controllers/productsController.js');
 var NotesREST    = require('./website/controllers/notesController.js');
+var UsersREST    = require('./website/controllers/usersController.js');
 //creando el objeto
 var ExpressServer = function (config){
 	//si vacio, es un objeto vacio
@@ -60,6 +61,7 @@ var ExpressServer = function (config){
 	//Model REST
 	this.app.use(ProductsREST);
 	this.app.use(NotesREST);
+	this.app.use(UsersREST);
 
 	//Router and controllers
 	for (var controller in router){

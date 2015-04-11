@@ -1,4 +1,4 @@
-(function() {
+  (function() {
     //this module depends on
     // 'store-products' module
     // 'ngRoute'
@@ -7,6 +7,11 @@
   .config(['$routeProvider',function($routeProvider) {
     // debugger;
     $routeProvider.
+    when('/nw-user',
+      {
+        templateUrl: 'templates/user/nw-user.html',
+        controller: 'NWUserIndexController'
+      }).
     when('/notes',
       {
         templateUrl: 'templates/notes/notes.html',

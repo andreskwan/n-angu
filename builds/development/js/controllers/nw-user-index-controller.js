@@ -1,8 +1,8 @@
 (function(){
 	angular.module('gemStore')
-	.controller('NotesIndexController', ['$http', '$scope',function($http,$scope){
+	.controller('NWUserIndexController', ['$http', '$scope',function($http,$scope){
 		//TODO: I need to create this in mongoDB
-    // debugger;
+    	debugger;
 		 $http({method:'GET', url:'/notas'})
         .success(function(data){
           $scope.notes = data;

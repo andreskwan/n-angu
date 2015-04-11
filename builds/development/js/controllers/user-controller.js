@@ -11,8 +11,8 @@
 	        	console.log("Error.status", error.status);
 	        });
 	        $scope.gravatarUrl = function(email){
-	        	var avatar = GravatarFactory.generate(email);
-	        	// debugger;
+	        	var avatar = GravatarFactory(email);
+	        	debugger;
 	        	return avatar;
 	        };
 		    $scope.update = function(user) {
