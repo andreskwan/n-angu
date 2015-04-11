@@ -1,7 +1,7 @@
 (function(){
 	angular.module('gemStore')
-	.controller('NotesIndexController', ['$http', '$scope',function($http,$scope){
-		//TODO: I need to create this in mongoDB
+	.controller('NotesIndexController', ['$http', '$scope', 'TweetableFactory',
+    function($http,$scope,TweetableFactory){
     // debugger;
 		 $http({method:'GET', url:'/notas'})
         .success(function(data){
@@ -10,5 +10,11 @@
       	.error(function(error){
       		console.log("$http - notes-controller REST: ",error);
       	});
+     $scope.tweetThatNote = function (noteToTweet){
+                                TweetableFactory(noteToTweet)
+                                .success(function(status){
+                                  console.log(status);
+                                });
+  };
 	}]);
 })();

@@ -1,6 +1,6 @@
 (function(){
 	angular.module('gemStore')
-	.factory('Tweetable', ['$http', function($http){
+	.factory('TweetableFactory', ['$http', function($http){
 		return function name(potentialTweet){
 			return $http({ 
 							method : "POST", 
