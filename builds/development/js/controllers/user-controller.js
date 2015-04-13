@@ -1,7 +1,7 @@
 (function(){
 	angular.module('gemStore')
- 	.controller('UserController',['$http', '$scope', 'Constantes','UserFactory','RoleFactory','GravatarFactory',
-		function($http, $scope, Constantes, UserFactory, RoleFactory, GravatarFactory){
+ 	.controller('UserController',['$http', '$scope', 'Constantes','UserFactory','RoleFactory','Gravatar',
+		function($http, $scope, Constantes, UserFactory, RoleFactory, Gravatar){
 	        RoleFactory.query(function (roles){
 	        	// $scope.roles = [{id:"1","name":"Empresario"},{id:"2","name":"Empre"}];
 	        	// debugger;
@@ -11,7 +11,7 @@
 	        	console.log("Error.status", error.status);
 	        });
 	        $scope.gravatarUrl = function(email){
-	        	var avatar = GravatarFactory(email);
+	        	var avatar = Gravatar(email);
 	        	debugger;
 	        	return avatar;
 	        };

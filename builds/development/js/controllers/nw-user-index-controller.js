@@ -1,15 +1,18 @@
 (function(){
 	angular.module('gemStore')
-	.controller('NWUserIndexController', ['$http', '$scope',function($http,$scope){
-		//TODO: I need to create this in mongoDB
-    debugger;
-		 $http({method:'GET', url:'/usuarios'})
+	.controller('NWUserIndexController', ['$http', '$scope','Gravatar',
+    function($http,$scope,Gravatar){
+    // debugger;
+     $http({method:'GET', url:'/usuarios'})
         .success(function(data){
-          debugger;
+          // debugger;
           $scope.notes = data;
-      	})
-      	.error(function(error){
-      		console.log("$http - notes-controller REST: ",error);
-      	});
+        })
+        .error(function(error){
+          console.log("$http - notes-controller REST: ",error);
+        });
+    $scope.gravatarUrl = function(user){
+                            return GravatarProvider(user.email);
+                          };
 	}]);
 })();

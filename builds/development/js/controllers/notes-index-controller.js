@@ -1,7 +1,7 @@
 (function(){
 	angular.module('gemStore')
-	.controller('NotesIndexController', ['$http', '$scope', 'TweetableFactory',
-    function($http,$scope,TweetableFactory){
+	.controller('NotesIndexController', ['$http', '$scope', 'Tweetable',
+    function($http,$scope,Tweetable){
     // debugger;
 		 $http({method:'GET', url:'/notas'})
         .success(function(data){
@@ -11,7 +11,7 @@
       		console.log("$http - notes-controller REST: ",error);
       	});
      $scope.tweetThatNote = function (noteToTweet){
-                                TweetableFactory(noteToTweet)
+                                Tweetable(noteToTweet)
                                 .success(function(status){
                                   console.log(status);
                                 });

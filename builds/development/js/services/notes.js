@@ -1,7 +1,7 @@
 (function(){
 	angular.module('gemStore')
-	.factory("NoteFactory",['$resource',
-		function($resource){
+	.factory("Note",['$resource',
+		function NoteFactory($resource){
 			return $resource("/notas/:id/");
 		}]);
 })();
