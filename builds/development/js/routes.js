@@ -12,6 +12,11 @@
         templateUrl: 'templates/user/nw-user.html',
         controller: 'NWUserIndexController'
       }).
+    when('/nw-user-create',
+      {
+        templateUrl: 'templates/user/nw-user-create.html',
+        controller: 'NWUserCreateController'
+      }).
     when('/notes',
       {
         templateUrl: 'templates/notes/notes.html',

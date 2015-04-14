@@ -10,8 +10,8 @@
 			};
 			this.$get = function(){
 						return function(email){
-									// debugger;
-								return avatarUrl + CriptoJS.md5(email) + "?size=" + avatarSize.toString();
+									debugger;
+								return avatarUrl + CryptoJS.md5(email) + "?size=" + avatarSize.toString();
 							   };
 						};
 		}]);

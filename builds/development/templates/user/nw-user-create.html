@@ -1,0 +1,21 @@
+<div class="new-user">
+  <div class="new-user-container">
+    <form class="form">
+      <fieldset>
+        <label for="name">Name</label>
+        <input name="Name"          ng-model="user.name" />
+      </fieldset>
+
+      <fieldset>
+        <label for="bio">Bio</label>
+        <textarea name="bio" ng-model="user.bio"></textarea>
+      </fieldset>
+
+      <fieldset>
+        <label for="email">Email</label>
+          <input type="email"  ng-model="user.email" /><br />
+      </fieldset>
+      <input type="submit" ng-click="saveUser(user)" value="Save"></input>
+    </form>
+  </div>
+</div>
