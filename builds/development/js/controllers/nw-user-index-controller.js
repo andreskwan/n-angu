@@ -6,10 +6,10 @@
      $http({method:'GET', url:'/usuarios'})
         .success(function(data){
           // debugger;
-          $scope.notes = data;
+          $scope.users = data;
         })
         .error(function(error){
-          console.log("$http - notes-controller REST: ",error);
+          console.log("$http - users-controller REST: ",error);
         });
     $scope.gravatarUrl = function(user){
                             return GravatarProvider(user.email);

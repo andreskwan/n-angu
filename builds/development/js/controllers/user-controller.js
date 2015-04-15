@@ -1,6 +1,7 @@
 (function(){
 	angular.module('gemStore')
- 	.controller('UserController',['$http', '$scope', 'Constantes','UserFactory','RoleFactory','Gravatar',
+ 	.controller('UserController',
+ 		['$http', '$scope', 'Constantes','UserFactory','RoleFactory','Gravatar',
 		function($http, $scope, Constantes, UserFactory, RoleFactory, Gravatar){
 	        RoleFactory.query(function (roles){
 	        	// $scope.roles = [{id:"1","name":"Empresario"},{id:"2","name":"Empre"}];

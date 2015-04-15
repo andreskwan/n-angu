@@ -1,6 +1,7 @@
 (function(){
 	angular.module('gemStore')
 	.directive('nwCardDirective', [function(){
+		debugger;
 		return {
 			restrict: 'E',
 			templateUrl: 'templates/directives/nw-card.html',
