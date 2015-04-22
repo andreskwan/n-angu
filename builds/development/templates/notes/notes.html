@@ -3,7 +3,7 @@
     <div class="notes-header">
       <h1 title="Notes">Notes NoteWrangler</h1>
     </div>
-
+    <nw-category-select></nw-category-select>
     <div class="note-wrapper">
       <a class="card-notes" ng-repeat="note in notes" ng-href="#/notes/{{note.id}}">
         <nw-card header="note.title" 
@@ -11,7 +11,6 @@
                  tweeted="note.tweeted"></nw-card>
         <button class="btn" ng-click="tweetThatNote(note.description)">Tweet It!</button>
       </a>
-
     </div>
 
   </div>

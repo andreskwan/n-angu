@@ -15,7 +15,7 @@ var productSchema = new Schema({
 		color      : String,
 		faces      : String,
 		images     : [String],
-		reviews    : [Schema.Types.Mixed]
+		reviews    : Schema.Types.Mixed
 });
 
 

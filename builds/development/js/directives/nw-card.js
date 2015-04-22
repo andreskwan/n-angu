@@ -11,6 +11,7 @@
 				icon       : "=",
 				id         : "=",
 				image      : "=",
+				email      : "=",
 				tweeted    : '='
 			},
 			link: function($scope, element) {

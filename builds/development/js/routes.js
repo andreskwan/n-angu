@@ -7,6 +7,11 @@
   .config(['$routeProvider',function($routeProvider) {
     // debugger;
     $routeProvider.
+    when('/nw-categories',
+      {
+        templateUrl: 'templates/user/nw-category-select.html',
+        controller: 'NWUserIndexController'
+      }).
     when('/nw-user',
       {
         templateUrl: 'templates/user/nw-user.html',

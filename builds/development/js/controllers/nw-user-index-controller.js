@@ -12,6 +12,7 @@
           console.log("$http - users-controller REST: ",error);
         });
     $scope.gravatarUrl = function(user){
+                            debugger;
                             return GravatarProvider(user.email);
                           };
 	}]);
