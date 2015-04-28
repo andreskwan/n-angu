@@ -39,8 +39,6 @@
     "consolidate": "^0.10.0",
     "cors": "^2.5.3",
     "express": "^4.9.0",
-    "gulp": "^3.8.11",
-    "gulp-nodemon": "^1.0.5",
     "lodash": "^2.4.1",
     "mongoose": "^3.8.19",
     "serve-favicon": "^2.1.7",

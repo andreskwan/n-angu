@@ -27,11 +27,19 @@ function createProduct(){
 		    	"images/gem-05.gif",
 		    	"images/gem-09.gif"
 		  	],
-		    reviews: {
+		    reviews: [{
 					stars : '5',
 					body  : "Pepino - I love this gem!",
 					author: "joe@example.org"
-			    }
+			    },{
+				    stars: '5',
+				    body: "I love this gem!",
+				    author: "joe@example.org"
+			    }, {
+			    	stars: '1',
+			    	body: "This gem sucks.",
+			    	author: "tim@example.org"
+			  	}]
 		  }
 		 };
 	return request.post('/productos')
